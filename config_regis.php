@@ -1,13 +1,10 @@
 <?php 
-//atur koneksi ke database
-$servername = "localhost"; //nama server database
-$username = "root"; //nama pengguna database
-$password = ""; //kata sandi database
-$dbname = "db_rental_motor"; //nama database
+$servername = "localhost";
+$username = "root"; 
+$password = ""; 
+$dbname = "db_rental_motor"; 
 
-// Membuat koneksi
 $conn = new mysqli($servername, $username, $password, $dbname);
-
    $usrname = $_POST["usrname"];
    $pwd = md5($_POST["pwd"]);
    $nama_cus = $_POST["nama_cus"];
@@ -19,7 +16,7 @@ $sql = "INSERT INTO tb_customer (username, password, nama_customer, jenis_kelami
 VALUES ('$usrname', '$pwd', '$nama_cus', '$jk', '$alamat', '$no_hp')";
 
 if ($conn->query($sql) === TRUE) {
-  echo "New record created successfully";
+  echo header("location:login.php");
 } else {
   echo "Error: " . $sql . "<br>" . $conn->error;
 }

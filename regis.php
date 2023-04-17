@@ -3,17 +3,16 @@
 
 <head>
    <meta charset="utf-8">
-   <title>Login | Rental JO</title>
-   <link rel="stylesheet" href="regis.css">
+   <title>Signup | RENTALJO</title>
+   <link rel="stylesheet" href="regis.css?v=2">
    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
       integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 </head>
 
 <body>
-   <div class="wrapper">
+   <div class="wrapper  d-flex">
       <div class="title d-flex justify-content-center align-items-center">
-         <p>Registration Form</p>
-         <img class="mx-1" src="img/logo.png" alt="logo" style="width: 70px; height:70px; border-radius:100px;">
+         <img src="img/logo1.png" alt="logo" style="width:350px; height:350px;">
       </div>
       <form id="form_login" role="form" method="post" action="config_regis.php">
          <div class="d-flex">

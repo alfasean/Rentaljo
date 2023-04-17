@@ -1,14 +1,13 @@
 <?php 
 session_start();
 
-$servername = "localhost"; //nama server database
-$username = "root"; //nama pengguna database
-$password = ""; //kata sandi database
-$dbname = "db_rental_motor"; //nama database
+$servername = "localhost";
+$username = "root";
+$password = ""; 
+$dbname = "db_rental_motor";
 
-// Membuat koneksi
 $conn = new mysqli($servername, $username, $password, $dbname);
-//atur variabel
+
 $err        = "";
 $username   = "";
 
@@ -22,20 +21,20 @@ if(isset($_POST['tb_customer'])){
     $password   = $_POST['password'];
 
     if($username == '' or $password == ''){
-        $err .= "<li>Silakan masukkan username dan juga password.</li>";
+        $err .= "<p style='margin: 10px 30px 0px 30px; color: #D21312 !important;'>Silakan masukkan username dan juga password</p>";
     }else{
         $sql1 = "select * from tb_customer where username = '$username'";
         $q1   = mysqli_query($conn,$sql1);
         $r1   = mysqli_fetch_array($q1);
 
-        if($r1['username'] == ''){
-            $err .= "<li>Username <b>$username</b> tidak tersedia.</li>";
+        if(isset($r1['username']) == ''){
+            $err .= "<p style='margin: 10px 30px 0px 30px; color: #D21312 !important;'>Username <b>$username</b> tidak tersedia</p>";
         }elseif($r1['password'] != md5($password)){
-            $err .= "<li>Password yang dimasukkan tidak sesuai.</li>";
+            $err .= "<p style='margin: 10px 30px 0px 30px; color: #D21312 !important;'>Password yang dimasukkan tidak sesuai</p>";
         }       
         
         if(empty($err)){
-            $_SESSION['session_username'] = $username; //server
+            $_SESSION['session_username'] = $username; 
             $_SESSION['session_password'] = md5($password);
             header("location:test.php");
         }
@@ -49,30 +48,30 @@ if(isset($_POST['tb_customer'])){
 
 <head>
     <meta charset="utf-8">
-    <title>Login | RENTAL JO</title>
-    <link rel="stylesheet" href="login.css">
+    <title>Login | RENTALJO</title>
+    <link rel="stylesheet" href="login.css?v=2">
     <!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
-    <link rel="icon" sizes="180x180" href="img/favicon-96x96.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 </head>
 
 <body>
-    <div class="wrapper">
-        <div class="title">
-            Login Form
+    <div class="wrapper d-flex">
+        <div class="title d-flex justify-content-center align-items-center">
+            <img src="img/logo1.png" alt="logo" style="width:280px; height:280px;">
         </div>
-
+        <form id="form_login" role="form" action="" method="post">
         <?php if($err){ ?>
         <div id="login-alert" class="alert alert-danger col-sm-12">
-            <ul><?php echo $err ?></ul>
+            <p><?php echo $err ?></p>
         </div>
         <?php } ?>
-        <form id="form_login" role="form" action="" method="post">
             <div class="field">
-                <input type="text" id="login_email" name="username" value="<?php echo $username ?>">
+                <input type="text" id="login_email" name="username">
                 <label>Username</label>
             </div>
             <div class="field">
-                <input type="password" name="password" id="login_password" required>
+                <input type="password" name="password" id="login_password">
                 <label>Password</label>
             </div>
             <div class="field">
@@ -83,7 +82,9 @@ if(isset($_POST['tb_customer'])){
             </div>
         </form>
     </div>
-    <!-- <script type="text/javascript" src="script.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">
+    </script>
 </body>
 
 </html>
