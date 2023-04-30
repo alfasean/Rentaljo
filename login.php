@@ -12,7 +12,7 @@ $err        = "";
 $username   = "";
 
 if(isset($_SESSION['session_username'])){
-    header("location:test.php");
+    header("location:index.php");
     exit();
 }
 
@@ -36,7 +36,7 @@ if(isset($_POST['tb_customer'])){
         if(empty($err)){
             $_SESSION['session_username'] = $username; 
             $_SESSION['session_password'] = md5($password);
-            header("location:test.php");
+            header("location:index.php");
         }
     }
 }
