@@ -1,9 +1,6 @@
 <?php 
 session_start();
-if(!isset($_SESSION['session_username'])){
-    header("location:login.php");
-    exit();
-}
+require_once "connections/config.php";
 ?>
 
 <!doctype html>
@@ -41,17 +38,25 @@ if(!isset($_SESSION['session_username'])){
                     </li>
                     <?php if (isset($_SESSION["session_username"])): ?>
                     <li class="nav-item me-3">
-                        <a class="nav-link" href="#"> | <?= ucfirst($_SESSION["session_username"]) ?></a>
+                    <div class="d-flex justify-content-center align-items-center" style="background-color: #F0A04B; border-radius: 10px;">
+                        <a class="nav-link me-3 ms-3" href="#" style="z-index: 1 !important; color: #fff !important;"><?= ucfirst($_SESSION["session_username"]) ?></a>
+                    </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link me-3" href="logout.php">Logout</a>
+                        <div class="d-flex justify-content-center align-items-center" style="background-color: #F0A04B; border-radius: 10px;">
+                        <a class="nav-link me-3 ms-3" href="logout.php" style="z-index: 1 !important; color: #fff !important;">Logout</a>
+                        </div>
                     </li>
                     <?php else: ?>
-                    <li class="nav-item">
-                        <a class="nav-link me-3" href="regis.php">Signup</a>
+                    <li class="nav-item me-3">
+                    <div class="d-flex justify-content-center align-items-center" style="background-color: #F0A04B; border-radius: 10px;">
+                        <a class="nav-link me-3 ms-3" href="regis.php" style="z-index: 1 !important; color: #fff !important;">Signup</a>
+                    </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="login.php">Login</a>
+                    <div class="d-flex justify-content-center align-items-center" style="background-color: #F0A04B; border-radius: 10px;">
+                        <a class="nav-link me-3 ms-3" href="login.php" style="z-index: 1 !important; color: #fff !important;">Login</a>
+                    </div>
                     </li>
                     <?php endif; ?>
                 </ul>
