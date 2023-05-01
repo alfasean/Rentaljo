@@ -13,7 +13,7 @@ require_once "connections/config.php";
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-    <link rel="stylesheet" href="homepage.css">
+        <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -28,13 +28,13 @@ require_once "connections/config.php";
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link active me-3" href="index.php?p=homepage">Home</a>
+                        <a class="nav-link me-3" href="index.php?p=homepage">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link me-3" href="index.php?p=service">Service</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link me-3" href="#">About</a>
+                        <a class="nav-link me-3" href="index.php?p=faq">FAQ</a>
                     </li>
                     <?php if (isset($_SESSION["session_username"])): ?>
                     <li class="nav-item me-3">
@@ -63,7 +63,7 @@ require_once "connections/config.php";
             </div>
         </div>
     </nav>
-
+    
     <?php
     error_reporting(0);
     switch($_GET['p'])
@@ -74,8 +74,8 @@ require_once "connections/config.php";
     		case "service";
     		include 'service.php';
     		break;
-    		case "about";
-    			include 'about.php';
+    		case "faq";
+    			include 'faq.php';
     		break;
     	}
     	?>
@@ -98,9 +98,9 @@ require_once "connections/config.php";
                 <div class="footer-col">
                     <h4>LAYANAN</h4>
                     <ul>
-                        <li><a href='#home'>Home</a></li>
-                        <li><a href='#portofolio'>Service</a></li>
-                        <li><a href='#about'>About</a></li>
+                        <li><a href='index.php?p=home'>Home</a></li>
+                        <li><a href='index.php?p=service'>Service</a></li>
+                        <li><a href='index.php?p=faq'>FAQ</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
