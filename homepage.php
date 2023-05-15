@@ -22,7 +22,7 @@ require_once "connections/config.php";
                 <div class="container mb-1">
                     <p class="title">RENTALJO DENG TORANG!</p>
                     <p class="title1">Jelajahi Kota dengan Bebas dan Hemat Bersama RentalJo</p>
-                    <button type="button" class="btn butt">PESAN SEKARANG</button>
+                    <button onclick="location.href='index.php?p=service'" type="button" class="btn butt">PESAN SEKARANG</button>
                 </div>
             </div>
             <div class="col-12 col-md-3 mb-5 mt-5">
