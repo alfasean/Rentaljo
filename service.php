@@ -16,7 +16,7 @@
     <button class="pre-btn"><img src="img/arrow.png" alt="arrow" /></button>
     <button class="nxt-btn"><img src="img/arrow.png" alt="arrow2" /></button>
     <div class="container-services mt-4">
-      <div class="col-md-4 mx-2 mb-3">
+      <div class="col-md-4 mx-5 mb-3">
         <div class="card border-0">
           <img src="img/vario.webp" class="card-img-top mx-auto" alt="img1" />
           <div class="card-body">
@@ -36,7 +36,7 @@
           <a href="#" class="btn sewa_button text-white mx-auto mt-4 mb-4">Sewa Sekarang</a>
         </div>
       </div>
-      <div class="col-md-4 mx-2 mb-3">
+      <div class="col-md-4 mx-5 mb-3">
         <div class="card border-0">
           <img src="img/vario.webp" class="card-img-top mx-auto" alt="img1" />
           <div class="card-body">
