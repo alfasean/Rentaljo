@@ -1,5 +1,7 @@
-<?php
-
+<?php 
 session_start();
-unset($_SESSION["admin"]);
-header('Location: login.php');
+$_SESSION['session_username'] = "";
+$_SESSION['session_password'] = "";
+session_destroy();
+header("location:index.php");
+?>

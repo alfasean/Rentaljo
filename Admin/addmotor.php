@@ -14,7 +14,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-  
+<div class="content-wrapper">
 <div class="container-xl">
 	<div class="table-responsive">
 		<div class="table-wrapper">
@@ -23,47 +23,46 @@
 					<div class="col-sm-6">
 						<h2><b>RENTALJO</b></h2>
 					</div>
-					<div class="col-sm-6">
-						<a href="./index.html" class="btn btn-success" ><i class="material-icons">&#xeaa7;</i> <span>Back to Home</span></a>
-					</div>
 				</div>
 			</div>
 
       <form>
         <div class="form-group">
-          <label>Nama</label>
+          <label>Merk</label>
           <input type="text" name="name" maxlength="200" class="form-control&quot;" required id="id_name">
         </div>
 
         <div class="form-group">
-          <label>Jenis Kelamin</label>
+          <label>Number of Vehicles</label>
+          <input type="text" name="email" maxlength="200" class="form-control&quot;" required id="id_email">
+        </div>
+
+        <div class="form-group">
+          <label>Motor Type</label>
           <select id="id_email">
             <option>-----</option>
-            <option>Pria</option>
-            <option>Wanita</option>
+            <option>Matic</option>
+            <option>Manual</option>
           </select>
         </div>
 
         <div class="form-group">
-          <label>Alamat</label>
-          <input type="text" name="email" maxlength="200" class="form-control&quot;" required id="id_email">
-        </div>
-
-        <div class="form-group">
-          <label>Nomor Handphone</label>
+          <label>Price</label>
           <input type="number" name="email" maxlength="200" class="form-control&quot;" required id="id_email">
         </div>
 
+
         <div class="form-group">
-          <label>Username</label>
+          <label>Status</label>
           <input type="text" name="email" maxlength="200" class="form-control&quot;" required id="id_email">
         </div>
 
         <div class="form-group">
-          <label>Password</label>
-          <input type="password" name="email" maxlength="200" class="form-control&quot;" required id="id_email">
+          <label for="formFile" class="form-label">Image</label>
+          <div class="custom-file">
+            <input type="file" name="avatar" accept="image/*" class="form-control&quot;" id="id_avatar">
+          </div>
         </div>
-        
                 
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
@@ -71,6 +70,7 @@
     </div>
   </div>
 </div> 
+</div>
 
 </body>
 </html>

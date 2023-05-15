@@ -16,6 +16,7 @@
 </head>
 
 <body>
+<div class="content-wrapper">
 	<div class="container-xl">
 		<div class="table-responsive">
 			<div class="table-wrapper">
@@ -25,8 +26,8 @@
 							<h2><b>RENTALJO</b></h2>
 						</div>
 						<div class="col-sm-6">
-							<a href="./createMotor.html" class="btn btn-success"><i class="material-icons">&#xE147;</i>
-								<span>Add New Motor</span></a>
+							<a href="admin.php?p=addcustomer" class="btn btn-success"><i class="material-icons">&#xE147;</i>
+								<span>Add New Customer</span></a>
 							<!-- <a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>						 -->
 						</div>
 					</div>
@@ -36,12 +37,12 @@
 					<thead>
 						<tr>
 							<th>No</th>
-							<th>Merk</th>
-							<th>Number of Vehicles</th>
-							<th>Motor Type</th>
-							<th>Price</th>
-							<th>Status</th>
-							<th>Image</th>
+							<th>Nama Customer</th>
+							<th>Jenis Kelamin</th>
+							<th>Alamat</th>
+							<th>Nomor Handphone</th>
+							<th>Username</th>
+							<th>Password</th>
 							<th>Actions</th>
 						</tr>
 					</thead>
@@ -49,30 +50,14 @@
 
 						<tr>
 							<td>1</td>
-							<td><a href="#"></a>Vario 150</a></td>
-							<td>DB 8281 AX</td>
-							<td>Matic</td>
-							<td>Rp200.000</td>
-							<td>Ready</td>
-							<td><img width="80" height="80" src="static/images/christina-wocintechchat-com-OW5KP_Pj85Q-unsplash.jpg" alt=""></td>
+							<td><a href="#"></a>Alfa Sean</a></td>
+							<td>Pria</td>
+							<td>Malalayang</td>
+							<td>08123456789</td>
+							<td>alfa22</td>
+							<td>Password</td>
 							<td>
-								<a href="./create.html" class="edit"><i class="material-icons" data-toggle="tooltip"
-										title="Edit">&#xE254;</i></a>
-								<a href="./delete.html" class="delete"><i class="material-icons" data-toggle="tooltip"
-										title="Delete">&#xE872;</i></a>
-							</td>
-						</tr>
-
-						<tr>
-							<td>2</td>
-							<td><a href="#">NMAX</a></td>
-							<td>DB 9339 MX</td>
-							<td>Matic</td>
-							<td>Rp200.000</td>
-							<td>Ready</td>
-							<td><img width="80" height="80" src="static/images/christina-wocintechchat-com-OW5KP_Pj85Q-unsplash.jpg" alt=""></td>
-							<td>
-								<a href="./create.html" class="edit"><i class="material-icons" data-toggle="tooltip"
+								<a href="./createCustomer.html" class="edit"><i class="material-icons" data-toggle="tooltip"
 										title="Edit">&#xE254;</i></a>
 								<a href="./delete.html" class="delete"><i class="material-icons" data-toggle="tooltip"
 										title="Delete">&#xE872;</i></a>
@@ -85,6 +70,7 @@
 			</div>
 		</div>
 	</div>
+</div>
 </body>
 
 </html>

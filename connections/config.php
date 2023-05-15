@@ -1,8 +1,8 @@
 <?php
-$servername = "localhost"; //nama server database
-$username = "root"; //nama pengguna database
-$password = ""; //kata sandi database
-$dbname = "db_rental_motor"; //nama database
-// Membuat koneksi
+$servername = "localhost"; 
+$username = "root"; 
+$password = ""; 
+$dbname = "db_rental_motor"; 
+
 $conn = new mysqli($servername, $username, $password, $dbname);
 ?>

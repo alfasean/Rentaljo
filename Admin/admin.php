@@ -1,10 +1,25 @@
+<?php 
+session_start();
+$servername = "localhost";
+$username = "root"; 
+$password = ""; 
+$dbname = "db_rental_motor";
+// Membuat koneksi
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+$sql = "SELECT nama_karyawan FROM tb_karyawan";
+$result = mysqli_query($conn, $sql);
+$row = mysqli_fetch_assoc($result);
+$nama_karyawan = $row['nama_karyawan'];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Dashboard</title>
+  <title>Admin | Dashboard</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet"
@@ -53,7 +68,7 @@
       <a href="index3.html" class="brand-link">
         <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
           style="opacity: .8">
-        <span class="brand-text font-weight-light">AdminLTE 3</span>
+        <span class="brand-text font-weight-light">AdminLTE</span>
       </a>
 
       <!-- Sidebar -->
@@ -61,10 +76,10 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
           <div class="image">
-            <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+            <img src="dist/img/admin.png" class="img-circle elevation-2" alt="User Image">
           </div>
           <div class="info">
-            <a href="#" class="d-block">Alexander Pierce</a>
+            <a href="#" class="d-block"><?= ucfirst($nama_karyawan) ?></a>
           </div>
         </div>
 
@@ -74,7 +89,7 @@
             <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
             <li class="nav-item menu-open">
-              <a href="#" class="nav-link active">
+              <a href="admin.php?p=dashboard" class="nav-link active">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>
                   Dashboard
@@ -91,13 +106,13 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="motor.html" class="nav-link">
+                  <a href="admin.php?p=motor" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Motorcycle</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="customer.html" class="nav-link">
+                  <a href="admin.php?p=customer" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Customer</p>
                   </a>
@@ -121,6 +136,14 @@
                 </li>
               </ul>
             </li>
+            <li class="nav-item">
+              <a href="logout.php" class="nav-link">
+                <i class="nav-icon fas fa-power-off"></i>
+                <p>
+                  Logout
+                </p>
+              </a>
+            </li>
           </ul>
         </nav>
         <!-- /.sidebar-menu -->
@@ -128,88 +151,27 @@
       <!-- /.sidebar -->
     </aside>
 
-    <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
-      <!-- Content Header (Page header) -->
-      <div class="content-header">
-        <div class="container-fluid">
-          <div class="row mb-2">
-            <div class="col-sm-6">
-              <h1 class="m-0">Dashboard</h1>
-            </div><!-- /.col -->
-          </div><!-- /.row -->
-        </div><!-- /.container-fluid -->
-      </div>
-      <!-- /.content-header -->
-
-      <!-- Main content -->
-      <section class="content">
-        <div class="container-fluid">
-          <!-- Small boxes (Stat box) -->
-          <div class="row">
-            <div class="col-lg-3 col-6">
-              <!-- small box -->
-              <div class="small-box bg-info">
-                <div class="inner">
-                  <h3>10</h3>
-                  <p>Rental Totals</p>
-                </div>
-                <div class="icon">
-                  <i class="fa fa-check"></i>
-                </div>
-              </div>
-            </div>
-            <!-- ./col -->
-            <div class="col-lg-3 col-6">
-              <!-- small box -->
-              <div class="small-box bg-success">
-                <div class="inner">
-                  <h3>20</h3>
-                  <p>Number of Motors</p>
-                </div>
-                <div class="icon">
-                  <i class="fa fa-motorcycle"></i>
-                </div>
-              </div>
-            </div>
-            <!-- ./col -->
-            <div class="col-lg-3 col-6">
-              <!-- small box -->
-              <div class="small-box bg-warning">
-                <div class="inner">
-                  <h3>44</h3>
-
-                  <p>User Registrations</p>
-                </div>
-                <div class="icon">
-                  <i class="ion ion-person-add"></i>
-                </div>
-              </div>
-            </div>
-            <!-- ./col -->
-            <div class="col-lg-3 col-6">
-              <!-- small box -->
-              <div class="small-box bg-danger">
-                <div class="inner">
-                  <h3>4</h3>
-                  <p>Admin Totals</p>
-                </div>
-                <div class="icon">
-                  <i class="fa fa-user-tie"></i>
-                </div>
-
-              </div>
-            </div>
-            <!-- ./col -->
-          </div>
-        </div>
-        <!-- /.content-wrapper -->
-        <!-- Control Sidebar -->
-        <aside class="control-sidebar control-sidebar-dark">
-          <!-- Control sidebar content goes here -->
-        </aside>
-        <!-- /.control-sidebar -->
-    </div>
+    <?php
+    error_reporting(0);
+    switch($_GET['p'])
+    {
+    default:
+    include 'dashboard.php';
+    break;
+    		case "motor";
+    		include 'motor.php';
+    		break;
+    		case "customer";
+    			include 'customer.php';
+    		break;
+    		case "addmotor";
+    			include 'addmotor.php';
+    		break;
+    		case "addcustomer";
+    			include 'addcustomer.php';
+    		break;
+    	}
+    	?>
     <!-- ./wrapper -->
 
     <!-- jQuery -->
