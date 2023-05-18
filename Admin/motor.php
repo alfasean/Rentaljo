@@ -16,77 +16,88 @@
 </head>
 
 <body>
-<div class="content-wrapper">
-	<div class="container-xl">
-		<div class="table-responsive">
-			<div class="table-wrapper">
-				<div class="table-title">
-					<div class="row">
-						<div class="col-sm-6">
-							<h2><b>RENTALJO</b></h2>
-						</div>
-						<div class="col-sm-6">
-							<a href="admin.php?p=addmotor" class="btn btn-success"><i class="material-icons">&#xE147;</i>
-								<span>Add New Motor</span></a>
-							<!-- <a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>						 -->
+	<div class="content-wrapper">
+		<div class="container-xl">
+			<div class="table-responsive">
+				<div class="table-wrapper">
+					<div class="table-title">
+						<div class="row">
+							<div class="col-sm-6">
+								<h2><b>RENTALJO</b></h2>
+							</div>
+							<div class="col-sm-6">
+								<a href="admin.php?p=addmotor" class="btn btn-success"><i
+										class="material-icons">&#xE147;</i>
+									<span>Add New Motor</span></a>
+								<!-- <a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>						 -->
+							</div>
 						</div>
 					</div>
-				</div>
 
-				<table class="table table-striped table-hover">
+				<?php
+				$servername = "localhost";
+				$username = "root"; 
+				$password = ""; 
+				$dbname = "db_rental_motor";
+				
+				$conn = new mysqli($servername, $username, $password, $dbname);
+
+				if (!$conn) {
+					die("Koneksi database gagal: " . mysqli_connect_error());
+				}
+
+				$no = 0;
+
+				$query = "SELECT * FROM tb_motor";
+				$result = mysqli_query($conn, $query);
+
+				if (mysqli_num_rows($result) > 0) {
+		
+					echo '<table class="table table-striped table-hover">
 					<thead>
-						<tr>
-							<th>No</th>
-							<th>Merk</th>
-							<th>Number of Vehicles</th>
-							<th>Motor Type</th>
-							<th>Price</th>
-							<th>Status</th>
-							<th>Image</th>
-							<th>Actions</th>
-						</tr>
-					</thead>
-					<tbody>
+					<tr>
+						<th>No</th>
+						<th>Merk</th>
+						<th>Number of Vehicles</th>
+						<th>Motor Type</th>
+						<th>Price</th>
+						<th>Status</th>
+						<th>Image</th>
+						<th>Actions</th>
+					</tr>
+				</thead>';
 
-						<tr>
-							<td>1</td>
-							<td><a href="#"></a>Vario 150</a></td>
-							<td>DB 8281 AX</td>
-							<td>Matic</td>
-							<td>Rp200.000</td>
-							<td>Ready</td>
-							<td><img width="60" height="60" src="dist/img/vario.webp" alt="aa"></td>
-							<td>
-								<a href="#" class="edit"><i class="material-icons" data-toggle="tooltip"
-										title="Edit">&#xE254;</i></a>
-								<a href="./delete.html" class="delete"><i class="material-icons" data-toggle="tooltip"
-										title="Delete">&#xE872;</i></a>
-							</td>
-						</tr>
+        while ($row = mysqli_fetch_assoc($result)) {
+			$no++;
+            echo '<tr>
+                    <td>' . $no . '</td>
+                    <td>' . $row['merk'] . '</td>
+                    <td>' . $row['no_plat'] . '</td>
+                    <td>' . $row['jenis_motor'] . '</td>
+                    <td>' . $row['harga'] . '</td>
+                    <td>' . $row['status'] . '</td>
+                    <td>' . $row['gambar'] . '</td>
+					<td>
+									<a href="#" class="edit"><i class="material-icons" data-toggle="tooltip"
+											title="Edit">&#xE254;</i></a>
+									<a href="deleteMotor.php?menu_del='.$row['id_motor'].'" class="delete"><i class="material-icons"
+											data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+								</td>
+                </tr>';
+        }
 
-						<tr>
-							<td>2</td>
-							<td><a href="#">NMAX</a></td>
-							<td>DB 9339 MX</td>
-							<td>Matic</td>
-							<td>Rp200.000</td>
-							<td>Ready</td>
-							<td><img width="60" height="60" src="dist/img/vario.webp" alt="aa"></td>
-							<td>
-								<a href="#" class="edit"><i class="material-icons" data-toggle="tooltip"
-										title="Edit">&#xE254;</i></a>
-								<a href="./delete.html" class="delete"><i class="material-icons" data-toggle="tooltip"
-										title="Delete">&#xE872;</i></a>
-							</td>
-						</tr>
+        echo '</table>';
+    } else {
+        echo 'Tidak ada data motor.';
+    }
 
-					</tbody>
-				</table>
+    mysqli_close($conn);
+	?>
 
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
 </body>
 
 </html>

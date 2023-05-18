@@ -1,3 +1,32 @@
+<?php
+$servername = "localhost";
+$username = "root"; 
+$password = ""; 
+$dbname = "db_rental_motor"; 
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+$nama = $_POST["nama_customer"];
+$jenis_kelamin = $_POST["jenis_kelamin"];
+$alamat = $_POST["alamat"];
+$no_hp = $_POST["no_hp"];
+$username = $_POST["username"];
+$password = md5($_POST["password"]);
+
+// $gambar = $_FILES['gambar']['name'];
+// 	$file_tmp = $_FILES['gambar']['tmp_name'] ;
+// 	move_uploaded_file($file_tmp, 'file/'.$foto) ;
+
+$sql = "INSERT INTO tb_customer (nama_customer, jenis_kelamin, alamat, no_hp, username, password)
+VALUES ('$nama', '$jenis_kelamin', '$alamat', '$no_hp', '$username', '$password')";
+
+if ($conn->query($sql) === TRUE) {
+      header("admin.php?p=customer");
+} else {
+  echo "Error: " . $sql . "<br>" . $conn->error;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,15 +55,15 @@
 				</div>
 			</div>
 
-      <form>
+      <form method="post">
         <div class="form-group">
           <label>Nama</label>
-          <input type="text" name="name" maxlength="200" class="form-control&quot;" required id="id_name">
+          <input type="text" name="nama_customer" maxlength="200" class="form-control&quot;" required id="id_name">
         </div>
 
         <div class="form-group">
           <label>Jenis Kelamin</label>
-          <select id="id_email">
+          <select id="id_email" name="jenis_kelamin">
             <option>-----</option>
             <option>Pria</option>
             <option>Wanita</option>
@@ -43,22 +72,22 @@
 
         <div class="form-group">
           <label>Alamat</label>
-          <input type="text" name="email" maxlength="200" class="form-control&quot;" required id="id_email">
+          <input type="text" name="alamat" maxlength="200" class="form-control&quot;" required id="id_email">
         </div>
 
         <div class="form-group">
           <label>Nomor Handphone</label>
-          <input type="number" name="email" maxlength="200" class="form-control&quot;" required id="id_email">
+          <input type="number" name="no_hp" maxlength="200" class="form-control&quot;" required id="id_email">
         </div>
 
         <div class="form-group">
           <label>Username</label>
-          <input type="text" name="email" maxlength="200" class="form-control&quot;" required id="id_email">
+          <input type="text" name="username" maxlength="200" class="form-control&quot;" required id="id_email">
         </div>
 
         <div class="form-group">
           <label>Password</label>
-          <input type="password" name="email" maxlength="200" class="form-control&quot;" required id="id_email">
+          <input type="password" name="password" maxlength="200" class="form-control&quot;" required id="id_email">
         </div>
         
                 

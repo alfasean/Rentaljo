@@ -1,3 +1,34 @@
+<?php
+    $servername = "localhost";
+  $username = "root"; 
+  $password = ""; 
+  $dbname = "db_rental_motor";
+  $conn = new mysqli($servername, $username, $password, $dbname);
+
+    if (!$conn) {
+        die('Koneksi ke database gagal: ' . mysqli_connect_error());
+    }
+
+    $query = "SELECT COUNT(*) as total_user FROM tb_customer";
+    $result = mysqli_query($conn, $query);
+    $data = mysqli_fetch_assoc($result);
+    $total_user = $data['total_user'];
+
+    $query = "SELECT COUNT(*) as total_karyawan FROM tb_karyawan";
+    $result = mysqli_query($conn, $query);
+    $data = mysqli_fetch_assoc($result);
+    $total_karyawan = $data['total_karyawan'];
+
+    $query = "SELECT COUNT(*) as total_motor FROM tb_motor";
+    $result = mysqli_query($conn, $query);
+    $data = mysqli_fetch_assoc($result);
+    $total_motor = $data['total_motor'];
+
+
+    mysqli_close($conn);
+    ?>
+
+
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
       <!-- Content Header (Page header) -->
@@ -34,7 +65,7 @@
               <!-- small box -->
               <div class="small-box bg-success">
                 <div class="inner">
-                  <h3>20</h3>
+                  <h3><?php echo $total_motor; ?></h3>
                   <p>Number of Motors</p>
                 </div>
                 <div class="icon">
@@ -47,8 +78,7 @@
               <!-- small box -->
               <div class="small-box bg-warning">
                 <div class="inner">
-                  <h3>44</h3>
-
+                  <h3><?php echo $total_user; ?></h3>
                   <p>User Registrations</p>
                 </div>
                 <div class="icon">
@@ -61,7 +91,7 @@
               <!-- small box -->
               <div class="small-box bg-danger">
                 <div class="inner">
-                  <h3>4</h3>
+                  <h3><?php echo $total_karyawan; ?></h3>
                   <p>Admin Totals</p>
                 </div>
                 <div class="icon">

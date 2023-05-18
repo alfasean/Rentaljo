@@ -1,3 +1,28 @@
+<?php
+include ".././connections/config.php";
+
+
+// $update = (isset($_GET['action']) AND $_GET['action'] == 'update') ? true : false;
+$merk = $_POST["merk"];
+$no_plat = $_POST["no_plat"];
+$jenis_motor = $_POST["jenis_motor"];
+$harga = $_POST["harga"];
+$status = $_POST["status"];
+
+$gambar = $_FILES['gambar']['name'];
+	$file_tmp = $_FILES['gambar']['tmp_name'] ;
+	move_uploaded_file($file_tmp, 'file/'.$foto) ;
+
+$sql = "INSERT INTO tb_motor (merk, no_plat, jenis_motor, status, harga, gambar)
+VALUES ('$merk', '$no_plat', '$jenis_motor', '$status', '$harga', '$gambar')";
+
+if ($conn->query($sql) === TRUE) {
+      header("admin.php?p=motor");
+} else {
+  echo "Error: " . $sql . "<br>" . $conn->error;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +34,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="css/style.css">
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </head>
@@ -26,20 +51,20 @@
 				</div>
 			</div>
 
-      <form>
+      <form method="post" action="">
         <div class="form-group">
           <label>Merk</label>
-          <input type="text" name="name" maxlength="200" class="form-control&quot;" required id="id_name">
+          <input type="text" name="merk" maxlength="200" class="form-control&quot;" required id="id_name">
         </div>
 
         <div class="form-group">
           <label>Number of Vehicles</label>
-          <input type="text" name="email" maxlength="200" class="form-control&quot;" required id="id_email">
+          <input type="text" name="no_plat" maxlength="200" class="form-control&quot;" required id="id_email">
         </div>
 
         <div class="form-group">
           <label>Motor Type</label>
-          <select id="id_email">
+          <select name="jenis_motor" id="id_email">
             <option>-----</option>
             <option>Matic</option>
             <option>Manual</option>
@@ -48,23 +73,23 @@
 
         <div class="form-group">
           <label>Price</label>
-          <input type="number" name="email" maxlength="200" class="form-control&quot;" required id="id_email">
+          <input type="number" name="harga" maxlength="200" class="form-control&quot;" required id="id_email">
         </div>
 
 
         <div class="form-group">
           <label>Status</label>
-          <input type="text" name="email" maxlength="200" class="form-control&quot;" required id="id_email">
+          <input type="text" name="status" maxlength="200" class="form-control&quot;" required id="id_email">
         </div>
 
         <div class="form-group">
           <label for="formFile" class="form-label">Image</label>
           <div class="custom-file">
-            <input type="file" name="avatar" accept="image/*" class="form-control&quot;" id="id_avatar">
+            <input type="file" name="gambar" accept="image/*" class="form-control&quot;" id="id_avatar">
           </div>
         </div>
                 
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary" name="submit">Submit</button>
       </form>
     
     </div>

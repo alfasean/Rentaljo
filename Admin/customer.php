@@ -33,40 +33,66 @@
 					</div>
 				</div>
 
-				<table class="table table-striped table-hover">
+
+				<?php
+				$servername = "localhost";
+				$username = "root"; 
+				$password = ""; 
+				$dbname = "db_rental_motor";
+				
+				$conn = new mysqli($servername, $username, $password, $dbname);
+
+				if (!$conn) {
+					die("Koneksi database gagal: " . mysqli_connect_error());
+				}
+				// $sql="SELECT * FROM tb_customer order by id_customer desc";
+
+				$no = 0;
+
+				$query = "SELECT * FROM tb_customer";
+				$result = mysqli_query($conn, $query);
+
+				if (mysqli_num_rows($result) > 0) {
+					// Membuat tabel untuk menampilkan data
+					echo '<table class="table table-striped table-hover">
 					<thead>
-						<tr>
+					<tr>
 							<th>No</th>
 							<th>Nama Customer</th>
 							<th>Jenis Kelamin</th>
 							<th>Alamat</th>
 							<th>Nomor Handphone</th>
 							<th>Username</th>
-							<th>Password</th>
 							<th>Actions</th>
 						</tr>
-					</thead>
-					<tbody>
+				</thead>';
 
-						<tr>
-							<td>1</td>
-							<td><a href="#"></a>Alfa Sean</a></td>
-							<td>Pria</td>
-							<td>Malalayang</td>
-							<td>08123456789</td>
-							<td>alfa22</td>
-							<td>Password</td>
-							<td>
-								<a href="./createCustomer.html" class="edit"><i class="material-icons" data-toggle="tooltip"
-										title="Edit">&#xE254;</i></a>
-								<a href="./delete.html" class="delete"><i class="material-icons" data-toggle="tooltip"
-										title="Delete">&#xE872;</i></a>
-							</td>
-						</tr>
+        while ($row = mysqli_fetch_assoc($result)) {
+			$no++;
+            echo '<tr>
+                    <td>' . $no . '</td>
+                    <td>' . $row['nama_customer'] . '</td>
+                    <td>' . $row['jenis_kelamin'] . '</td>
+                    <td>' . $row['alamat'] . '</td>
+                    <td>' . $row['no_hp'] . '</td>
+                    <td>' . $row['username'] . '</td>
+					<td>
+									<a href="#" class="edit"><i class="material-icons" data-toggle="tooltip"
+											title="Edit">&#xE254;</i></a>
+									<a href="deleteCustomer.php?menu_del='.$row['id_customer'].'" class="delete"><i class="material-icons"
+											data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+								</td>
+                </tr>';
+        }
 
-					</tbody>
-				</table>
+        echo '</table>';
+    } else {
+        echo 'Tidak ada data motor.';
+    }
 
+    mysqli_close($conn);
+	?>
+	
 			</div>
 		</div>
 	</div>
