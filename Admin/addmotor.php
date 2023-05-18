@@ -1,27 +1,38 @@
 <?php
-include ".././connections/config.php";
+$servername = "localhost";
+$username = "root"; 
+$password = ""; 
+$dbname = "db_rental_motor"; 
 
+$conn = new mysqli($servername, $username, $password, $dbname);
 
-// $update = (isset($_GET['action']) AND $_GET['action'] == 'update') ? true : false;
-$merk = $_POST["merk"];
-$no_plat = $_POST["no_plat"];
-$jenis_motor = $_POST["jenis_motor"];
-$harga = $_POST["harga"];
-$status = $_POST["status"];
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $merk = $_POST["merk"];
+    $no_plat = $_POST["no_plat"];
+    $jenis_motor = $_POST["jenis_motor"];
+    $harga = $_POST["harga"];
+    $status = $_POST["status"];
 
-$gambar = $_FILES['gambar']['name'];
-	$file_tmp = $_FILES['gambar']['tmp_name'] ;
-	move_uploaded_file($file_tmp, 'file/'.$foto) ;
+    $gambar = "uploads/" . basename($_FILES['gambar']['name']);
+    if (move_uploaded_file($_FILES['gambar']['tmp_name'], $gambar)) {
+        echo "Gambar berhasil diunggah dan disimpan di folder lokal.";
+    } else {
+        echo "Gagal mengunggah gambar.";
+    }
 
-$sql = "INSERT INTO tb_motor (merk, no_plat, jenis_motor, status, harga, gambar)
-VALUES ('$merk', '$no_plat', '$jenis_motor', '$status', '$harga', '$gambar')";
+    $sql = "INSERT INTO tb_motor (merk, no_plat, jenis_motor, status, harga, gambar)
+    VALUES ('$merk', '$no_plat', '$jenis_motor', '$status', '$harga', '$gambar')";
 
-if ($conn->query($sql) === TRUE) {
-      header("admin.php?p=motor");
-} else {
-  echo "Error: " . $sql . "<br>" . $conn->error;
+    if ($conn->query($sql) === TRUE) {
+        $conn->close();
+        echo '<script>window.location.href = "admin.php?p=motor";</script>';
+        exit();
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -34,7 +45,7 @@ if ($conn->query($sql) === TRUE) {
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="css/style.css">
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </head>
@@ -51,15 +62,15 @@ if ($conn->query($sql) === TRUE) {
 				</div>
 			</div>
 
-      <form method="post" action="">
+      <form method="post" action="" enctype="multipart/form-data">
         <div class="form-group">
           <label>Merk</label>
-          <input type="text" name="merk" maxlength="200" class="form-control&quot;" required id="id_name">
+          <input type="text" name="merk" maxlength="200" class="form-control" required id="id_name">
         </div>
 
         <div class="form-group">
           <label>Number of Vehicles</label>
-          <input type="text" name="no_plat" maxlength="200" class="form-control&quot;" required id="id_email">
+          <input type="text" name="no_plat" maxlength="200" class="form-control" required id="id_email">
         </div>
 
         <div class="form-group">
@@ -73,19 +84,18 @@ if ($conn->query($sql) === TRUE) {
 
         <div class="form-group">
           <label>Price</label>
-          <input type="number" name="harga" maxlength="200" class="form-control&quot;" required id="id_email">
+          <input type="number" name="harga" maxlength="200" class="form-control" required id="id_email">
         </div>
-
 
         <div class="form-group">
           <label>Status</label>
-          <input type="text" name="status" maxlength="200" class="form-control&quot;" required id="id_email">
+          <input type="text" name="status" maxlength="200" class="form-control" required id="id_email">
         </div>
 
         <div class="form-group">
           <label for="formFile" class="form-label">Image</label>
           <div class="custom-file">
-            <input type="file" name="gambar" accept="image/*" class="form-control&quot;" id="id_avatar">
+            <input type="file" name="gambar" class="form-control" id="id_avatar">
           </div>
         </div>
                 

@@ -76,7 +76,7 @@
                     <td>' . $row['jenis_motor'] . '</td>
                     <td>' . $row['harga'] . '</td>
                     <td>' . $row['status'] . '</td>
-                    <td>' . $row['gambar'] . '</td>
+					<td><img src="uploads/' . $row['gambar'] . '" width="100" height="100" alt="Motor Image"></td>
 					<td>
 									<a href="#" class="edit"><i class="material-icons" data-toggle="tooltip"
 											title="Edit">&#xE254;</i></a>
