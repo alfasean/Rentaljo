@@ -170,6 +170,12 @@ $nama_karyawan = $row['nama_karyawan'];
     		case "addcustomer";
     			include 'addcustomer.php';
     		break;
+    		case "updatecustomer";
+    			include 'updateCustomer.php';
+    		break;
+    		case "updatemotor";
+    			include 'updateMotor.php';
+    		break;
     	}
     	?>
     <!-- ./wrapper -->

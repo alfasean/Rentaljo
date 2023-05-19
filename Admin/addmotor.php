@@ -1,8 +1,8 @@
 <?php
 $servername = "localhost";
-$username = "root"; 
-$password = ""; 
-$dbname = "db_rental_motor"; 
+$username = "root";
+$password = "";
+$dbname = "db_rental_motor";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -13,8 +13,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $harga = $_POST["harga"];
     $status = $_POST["status"];
 
-    $gambar = "uploads/" . basename($_FILES['gambar']['name']);
-    if (move_uploaded_file($_FILES['gambar']['tmp_name'], $gambar)) {
+    $gambar = basename($_FILES['gambar']['name']);
+    $gambar_path = "uploads/" . $gambar;
+
+    if (move_uploaded_file($_FILES['gambar']['tmp_name'], $gambar_path)) {
         echo "Gambar berhasil diunggah dan disimpan di folder lokal.";
     } else {
         echo "Gagal mengunggah gambar.";

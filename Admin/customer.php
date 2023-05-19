@@ -46,9 +46,7 @@
 					die("Koneksi database gagal: " . mysqli_connect_error());
 				}
 				// $sql="SELECT * FROM tb_customer order by id_customer desc";
-
 				$no = 0;
-
 				$query = "SELECT * FROM tb_customer";
 				$result = mysqli_query($conn, $query);
 
@@ -77,7 +75,7 @@
                     <td>' . $row['no_hp'] . '</td>
                     <td>' . $row['username'] . '</td>
 					<td>
-									<a href="#" class="edit"><i class="material-icons" data-toggle="tooltip"
+									<a href="admin.php?p=updatecustomer&menu_upd='.$row['id_customer'].'" class="edit"><i class="material-icons" data-toggle="tooltip"
 											title="Edit">&#xE254;</i></a>
 									<a href="deleteCustomer.php?menu_del='.$row['id_customer'].'" class="delete"><i class="material-icons"
 											data-toggle="tooltip" title="Delete">&#xE872;</i></a>

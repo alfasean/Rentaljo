@@ -78,7 +78,7 @@
                     <td>' . $row['status'] . '</td>
 					<td><img src="uploads/' . $row['gambar'] . '" width="100" height="100" alt="Motor Image"></td>
 					<td>
-									<a href="#" class="edit"><i class="material-icons" data-toggle="tooltip"
+									<a href="admin.php?p=updatemotor&menu_upd='.$row['id_motor'].'"" class="edit"><i class="material-icons" data-toggle="tooltip"
 											title="Edit">&#xE254;</i></a>
 									<a href="deleteMotor.php?menu_del='.$row['id_motor'].'" class="delete"><i class="material-icons"
 											data-toggle="tooltip" title="Delete">&#xE872;</i></a>
