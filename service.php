@@ -16,52 +16,32 @@
     <button class="pre-btn"><img src="img/arrow.png" alt="arrow" /></button>
     <button class="nxt-btn"><img src="img/arrow.png" alt="arrow2" /></button>
     <div class="container-services mt-4">
-      <div class="col-md-4 mx-5 mb-3">
-        <div class="card border-0">
-          <img src="img/vario.webp" class="card-img-top mx-auto" alt="img1" />
-          <div class="card-body">
-            <p class="mx-auto judul">Honda Vario 125</p>
-            <p class="card-text text-center">Rp. 100000</p>
-          </div>
-          <a href="#" class="btn sewa_button text-white mx-auto mt-4 mb-4">Sewa Sekarang</a>
-        </div>
-      </div>
-      <div class="col-md-4 mx-2 mb-3">
-        <div class="card border-0">
-          <img src="img/vario.webp" class="card-img-top mx-auto" alt="img1" />
-          <div class="card-body">
-            <p class="mx-auto judul">Honda Vario 125</p>
-            <p class="card-text text-center">Rp. 100000</p>
-          </div>
-          <a href="#" class="btn sewa_button text-white mx-auto mt-4 mb-4">Sewa Sekarang</a>
-        </div>
-      </div>
-      <div class="col-md-4 mx-5 mb-3">
-        <div class="card border-0">
-          <img src="img/vario.webp" class="card-img-top mx-auto" alt="img1" />
-          <div class="card-body">
-            <p class="mx-auto judul">Honda Vario 125</p>
-            <p class="card-text text-center">Rp. 100000</p>
-          </div>
-          <a href="#" class="btn sewa_button text-white mx-auto mt-4 mb-4">Sewa Sekarang</a>
-        </div>
-      </div>
-      <div class="col-md-4 mx-2 mb-3">
-        <div class="card border-0">
-          <img src="img/vario.webp" class="card-img-top mx-auto" alt="img1" />
-          <div class="card-body">
-            <p class="mx-auto judul">Honda Vario 125</p>
-            <p class="card-text text-center">Rp. 100000</p>
-          </div>
-          <a href="#" class="btn sewa_button text-white mx-auto mt-4 mb-4">Sewa Sekarang</a>
-        </div>
+      <div class="row">
+        <?php
+          $servername = "localhost";
+          $username = "root"; 
+          $password = ""; 
+          $dbname = "db_rental_motor";
+          $conn = new mysqli($servername, $username, $password, $dbname);
+          $query_res = mysqli_query($conn, "SELECT * FROM tb_motor"); 
+          while ($r = mysqli_fetch_array($query_res)) {
+            echo '<div class="col-md-4 mx-5 mb-3">
+                    <div class="card border-0">
+                      <img class="card-img-top mx-auto" alt="img1" src="Admin/uploads/'.$r['gambar'].'" />
+                      <div class="card-body">
+                        <p class="mx-auto judul">'.$r['merk'].'</p>
+                        <p class="card-text text-center">Rp. '.$r['harga'].'</p>
+                      </div>
+                      <a href="#" class="btn sewa_button text-white mx-auto mt-4 mb-4">Sewa Sekarang</a>
+                    </div>
+                  </div>';
+          }
+        ?>
       </div>
     </div>
+  </div>
 
-    <script src="script.js"></script>
-    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">
-    </script> -->
+  <script src="script.js"></script>
 </body>
 
 </html>
