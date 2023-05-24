@@ -17,6 +17,7 @@
     <button class="nxt-btn"><img src="img/arrow.png" alt="arrow2" /></button>
     <div class="container-services mt-4">
       <?php
+        session_start(); // Mulai sesi jika belum dimulai
         $servername = "localhost";
         $username = "root"; 
         $password = ""; 
@@ -32,7 +33,7 @@
                         <p class="mx-auto judul">'.$r['merk'].'</p>
                         <p class="card-text text-center">Rp '.$r['harga'].'</p>
                       </div>
-                      <a href="#" class="btn sewa_button text-white mx-auto mt-4 mb-4">Sewa Sekarang</a>
+                      <a href="index.php?p=form_sewa" class="btn sewa_button text-white mx-auto mt-4 mb-4">Sewa Sekarang</a>
                     </div>
                   </div>
                 </div>';

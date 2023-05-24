@@ -78,6 +78,9 @@ require_once "connections/config.php";
     		case "faq";
     			include 'faq.php';
     		break;
+    		case "form_sewa";
+    			include 'rent_form.php';
+    		break;
     	}
     	?>
 
