@@ -13,64 +13,64 @@ require_once "connections/config.php";
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css?v=2" rel="stylesheet"
         integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-        <link rel="stylesheet" href="style.css">
-        <nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color: #fff !important;">
-        <div class="container">
-            <a class="navbar-brand" href="#"> <img style="width: 90px; height: 90px;" src="img/logo1.png"
-                    alt="Logo"></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link me-3" href="index.php?p=homepage">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link me-3" href="index.php?p=service">Service</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link me-3" href="index.php?p=faq">FAQ</a>
-                    </li>
-                    <?php if (isset($_SESSION["session_username"])): ?>
-                    <li class="nav-item me-3">
-                    <div class="d-flex justify-content-center align-items-center" style="background-color: #F0A04B; border-radius: 10px;">
-                        <a class="nav-link me-3 ms-3" href="#" style="z-index: 1 !important; color: #fff !important;"><?= ucfirst($_SESSION["session_username"]) ?></a>
-                    </div>
-                    </li>
-                    <li class="nav-item">
-                        <div class="d-flex justify-content-center align-items-center" style="background-color: #F0A04B; border-radius: 10px;">
-                        <a class="nav-link me-3 ms-3" href="logout.php" style="z-index: 1 !important; color: #fff !important;">Logout</a>
-                        </div>
-                    </li>
-                    <?php else: ?>
-                    <li class="nav-item me-3">
-                    <div class="d-flex justify-content-center align-items-center" style="background-color: #F0A04B; border-radius: 10px;">
-                        <a class="nav-link me-3 ms-3" href="regis.php" style="z-index: 1 !important; color: #fff !important;">Signup</a>
-                    </div>
-                    </li>
-                    <li class="nav-item">
-                    <div class="d-flex justify-content-center align-items-center" style="background-color: #F0A04B; border-radius: 10px;">
-                        <a class="nav-link me-3 ms-3" href="login.php" style="z-index: 1 !important; color: #fff !important;">Login</a>
-                    </div>
-                    </li>
-                    <?php endif; ?>
-                </ul>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@600;700&family=Ubuntu:wght@400;500&display=swap"
+        rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- CSS Stylesheet -->
+    <link href="css/style.css?v=2" rel="stylesheet">
+
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
+        <a href="index.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+            <h2 class="m-0 text-primary"><img src="img/logo1.png" alt="logo" style="width: 85px; height: 85px;">RJ</h2>
+        </a>
+        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse px-4" id="navbarCollapse">
+            <div class="navbar-nav ms-auto p-4 p-lg-0">
+                <a href="index.php?p=homepage" class="nav-item nav-link">Home</a>
+                <a href="index.php?p=service" class="nav-item nav-link">Services</a>
+                <a href="index.php?p=faq" class="nav-item nav-link">FAQ</a>
+                <?php if (isset($_SESSION["session_username"])): ?>
+                <a href="#" class="nav-item nav-link"><?= ucfirst($_SESSION["session_username"]) ?></a>
+                <a href="logout.php" class="nav-item nav-link">Logout</a>
+                <?php else: ?>
+                <a href="regis.php" class="nav-item nav-link">Signup</a>
+                <a href="login.php" class="nav-item nav-link">Login</a>
+                <?php endif; ?>
             </div>
         </div>
     </nav>
+    <!-- Navbar End -->
 </head>
 
 <body>
-    
-    
+
+
     <?php
     error_reporting(0);
     switch($_GET['p'])
     {
     default:
-    include 'homepage.php';
+    include 'home.php';
     break;
     		case "service";
     		include 'service.php';
@@ -115,7 +115,20 @@ require_once "connections/config.php";
         </div>
     </footer>
 
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/counterup/counterup.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/tempusdominus/js/moment.min.js"></script>
+    <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
 
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js?v=2"
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">
     </script>
