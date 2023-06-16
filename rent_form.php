@@ -1,36 +1,47 @@
 <?php
 session_start();
 require_once "connections/config.php";
-if(empty($_SESSION["session_username"]))
-{
-	header('location:login.php');
+if (empty($_SESSION["session_username"])) {
+    header('location:login.php');
 }
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-	$id = $_SESSION["session_username"];
-    $tgl_pinjam = $_POST["tgl_pinjam"];
-    $tgl_kembali = $_POST["tgl_kembali"];
-    $jaminan = $_POST["jaminan"];
-	
-    $query = "SELECT id_customer FROM tb_customer WHERE username = '$id'";
-    $result = $conn->query($query);
-    if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
-        $id_customer = $row["id_customer"];
 
-        $sql = "INSERT INTO tb_sewa (id_customer, tgl_pinjam, tgl_kembali, jaminan)
-        VALUES ('$id_customer', '$tgl_pinjam', '$tgl_kembali', '$jaminan')";
+// Form submission check
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
+    // Get the id from the query string
+    if (isset($_GET["id"])) {
+        $id_motor = $_GET["id"];
+        $id = $_SESSION["session_username"];
 
-        if ($conn->query($sql) === TRUE) {
-            $conn->close();
-            echo '<script>window.location.href = "index.php?p=service";</script>';
-            exit();
+        $tgl_pinjam = $_POST["tgl_pinjam"];
+        $tgl_kembali = $_POST["tgl_kembali"];
+        $jaminan = $_POST["jaminan"];
+        $metode_pembayaran = $_POST["metode_pembayaran"];
+
+        // Mengambil ID customer dari session_username
+        $query = "SELECT id_customer FROM tb_customer WHERE username = '$id'";
+        $result = $conn->query($query);
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            $id_customer = $row["id_customer"];
+
+            // Memasukkan data ke dalam tabel tb_sewa
+            $sql = "INSERT INTO tb_sewa (id_customer, id_motor, tgl_pinjam, tgl_kembali, jaminan, metode_pembayaran)
+            VALUES ('$id_customer', '$id_motor', '$tgl_pinjam', '$tgl_kembali', '$jaminan', '$metode_pembayaran')";
+
+            if ($conn->query($sql) === TRUE) {
+                $conn->close();
+                echo '<script>window.location.href = "index.php?p=service";</script>';
+                exit();
+            } else {
+                echo "Error: " . $sql . "<br>" . $conn->error;
+            }
         } else {
-            echo "Error: " . $sql . "<br>" . $conn->error;
+            echo "Error: ID customer tidak ditemukan.";
         }
     } else {
-        echo "Error: ID customer tidak ditemukan.";
+        echo "Error: Invalid request.";
     }
-}
+} 
 ?>
 
 <!DOCTYPE html>
@@ -209,6 +220,19 @@ form label {
             <option>Deposit Tunai</option>
           </select>
         </div>
+        <div class="form-group">
+          <label>Metode Pembayaran</label>
+          <select name="metode_pembayaran" class="input">
+            <option>-----</option>
+            <option>COD</option>
+          </select>
+        </div>
+
+		<div class="form-group">
+          <label>Total Bayar</label>
+          <input type="text" name="total_bayar" value="<?php echo isset($total_bayar) ? 'Rp ' . $total_bayar : ''; ?>" readonly class="form-control input">
+        </div>
+
         <button type="submit" class="btn btn-primary" name="submit">Submit</button>
     </div>
   </div>
