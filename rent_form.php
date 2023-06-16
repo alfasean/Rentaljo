@@ -24,16 +24,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
             $row = $result->fetch_assoc();
             $id_customer = $row["id_customer"];
 
-            // Memasukkan data ke dalam tabel tb_sewa
-            $sql = "INSERT INTO tb_sewa (id_customer, id_motor, tgl_pinjam, tgl_kembali, jaminan, metode_pembayaran)
-            VALUES ('$id_customer', '$id_motor', '$tgl_pinjam', '$tgl_kembali', '$jaminan', '$metode_pembayaran')";
+            // Mengambil tarif sewa motor
+            $query_motor = "SELECT harga FROM tb_motor WHERE id_motor = '$id_motor'";
+            $result_motor = $conn->query($query_motor);
+            if ($result_motor->num_rows > 0) {
+                $row_motor = $result_motor->fetch_assoc();
+                $harga = $row_motor["harga"];
 
-            if ($conn->query($sql) === TRUE) {
-                $conn->close();
-                echo '<script>window.location.href = "index.php?p=service";</script>';
-                exit();
+                // Menghitung total bayar
+                $date1 = new DateTime($tgl_pinjam);
+                $date2 = new DateTime($tgl_kembali);
+                $diff = $date2->diff($date1);
+                $durasi_sewa = $diff->days;
+                $total_bayar = $harga * $durasi_sewa;
+
+                // Memasukkan data ke dalam tabel tb_sewa
+                $sql = "INSERT INTO tb_sewa (id_customer, id_motor, tgl_pinjam, tgl_kembali, jaminan, metode_pembayaran, total_bayar)
+                VALUES ('$id_customer', '$id_motor', '$tgl_pinjam', '$tgl_kembali', '$jaminan', '$metode_pembayaran', '$total_bayar')";
+
+                if ($conn->query($sql) === TRUE) {
+                    $conn->close();
+                    echo '<script>window.location.href = "index.php?p=service";</script>';
+                    exit();
+                } else {
+                    echo "Error: " . $sql . "<br>" . $conn->error;
+                }
             } else {
-                echo "Error: " . $sql . "<br>" . $conn->error;
+                echo "Error: Tarif sewa motor tidak ditemukan.";
             }
         } else {
             echo "Error: ID customer tidak ditemukan.";
@@ -49,13 +66,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@600;700&family=Ubuntu:wght@400;500&display=swap"
+    rel="stylesheet">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<!-- Customized Bootstrap Stylesheet -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+
+<!-- CSS Stylesheet -->
+<link href="css/style.css?v=2" rel="stylesheet">
 
 <style>
   @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
@@ -63,7 +88,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
 body {
 	color: #566787;
 	background: #f5f5f5;
-	font-family: 'Poppins', sans-serif;
 	font-size: 16px;
 }
 .table-responsive {
@@ -75,19 +99,6 @@ body {
 	border-radius: 3px;
 	min-width: 1000px;
 	box-shadow: 0 1px 1px rgba(0,0,0,.05);
-}
-.table-title {        
-	padding-bottom: 15px;
-	background: #435d7d;
-	color: #fff;
-	padding: 16px 30px;
-	min-width: 100%;
-	margin: -20px -25px 10px;
-	border-radius: 3px 3px 0 0;
-}
-.table-title h2 {
-	margin: 5px 0 0;
-	font-size: 24px;
 }
 .table-title .btn-group {
 	float: right;
@@ -145,6 +156,7 @@ table.table td a {
 	display: inline-block;
 	text-decoration: none;
 	outline: none !important;
+  font-family: 'Poppins', sans-serif;
 }
 table.table td a:hover {
 	color: #2196F3;
@@ -169,6 +181,7 @@ table.table .avatar {
 form label {
 	font-size: 1rem;
 	font-weight: normal;
+  font-family: 'Poppins', sans-serif;
 }	
 
 .input {
@@ -185,6 +198,7 @@ form label {
 	border: 1px solid #ced4da;
 	border-radius: 0.25rem;
 	transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  font-family: 'Poppins', sans-serif;
 }
 </style>
 </head>
@@ -193,13 +207,51 @@ form label {
 <div class="container-xl">
 	<div class="table-responsive">
 		<div class="table-wrapper">
-			<div class="table-title">
-				<div class="row">
-					<div class="col-sm-6">
-						<h2><b>RENTALJO</b></h2>
-					</div>
-				</div>
-			</div>
+      <?php
+        // Mengambil data motor dari query string
+        if (isset($_GET["id"])) {
+          $id_motor = $_GET["id"];
+          
+          // Mengambil data motor berdasarkan id
+          $query_motor = "SELECT * FROM tb_motor WHERE id_motor = '$id_motor'";
+          $result_motor = $conn->query($query_motor);
+          
+          if ($result_motor->num_rows > 0) {
+            $row_motor = $result_motor->fetch_assoc();
+            $harga_sewa = $row_motor["harga_sewa"];
+
+            // Menampilkan harga sewa motor
+            echo '<div class="table-title">';
+            echo '<div class="row">';
+            echo '<div class="col-sm-6">';
+            echo '</div>';
+            echo '</div>';
+            echo '</div>';
+
+            // Memproses form submission
+            if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
+              // ... kode yang ada sebelumnya ...
+
+              // Menghitung total bayar berdasarkan harga sewa dan durasi sewa
+              $tgl_pinjam = $_POST["tgl_pinjam"];
+              $tgl_kembali = $_POST["tgl_kembali"];
+
+              // Menghitung selisih hari antara tanggal pinjam dan tanggal kembali
+              $date_diff = date_diff(date_create($tgl_pinjam), date_create($tgl_kembali));
+              $durasi_sewa = $date_diff->format('%a');
+
+              // Menghitung total bayar
+              $total_bayar = $harga_sewa * $durasi_sewa;
+
+              // ... kode yang ada setelahnya ...
+            }
+          } else {
+            echo "Error: Data motor tidak ditemukan.";
+          }
+        } else {
+          echo "Error: Invalid request.";
+        }
+      ?>
 
       <form method="post" action="" enctype="multipart/form-data">
         <div class="form-group">
@@ -220,24 +272,39 @@ form label {
             <option>Deposit Tunai</option>
           </select>
         </div>
+
         <div class="form-group">
           <label>Metode Pembayaran</label>
           <select name="metode_pembayaran" class="input">
             <option>-----</option>
-            <option>COD</option>
+            <option>Tunai</option>
           </select>
         </div>
 
-		<div class="form-group">
+        <div class="form-group">
           <label>Total Bayar</label>
           <input type="text" name="total_bayar" value="<?php echo isset($total_bayar) ? 'Rp ' . $total_bayar : ''; ?>" readonly class="form-control input">
         </div>
 
-        <button type="submit" class="btn btn-primary" name="submit">Submit</button>
+        <input type="submit" name="submit" value="Submit" class="btn btn-success" style="border-radius: 5px;">
+        <p class="mt-3"><i>Note : Pembayaran dan penyerahan jaminan dilakukan ketika customer melakukan pengambilan motor</i></p>
+      </form>
     </div>
   </div>
-</div> 
 </div>
 
+  <!-- JavaScript Libraries -->
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="lib/wow/wow.min.js"></script>
+  <script src="lib/easing/easing.min.js"></script>
+  <script src="lib/waypoints/waypoints.min.js"></script>
+  <script src="lib/counterup/counterup.min.js"></script>
+  <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+  <script src="lib/tempusdominus/js/moment.min.js"></script>
+  <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+  <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/script.js"></script>
 </body>
 </html>

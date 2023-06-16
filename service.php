@@ -47,7 +47,7 @@
       while ($r = mysqli_fetch_array($query_res)) {
           echo '<div class="row">
                   <div class="col-md-4 mx-3 mb-3">
-                    <div class="card border-0">
+                    <div class="card border-0" style="height: 100%;">
                       <img class="card-img-top mx-auto" alt="img1" src="Admin/uploads/' . $r['gambar'] . '" />
                       <div class="card-body">
                         <p class="mx-auto judul">' . $r['merk'] . '</p>
@@ -73,8 +73,6 @@
   <script src="lib/tempusdominus/js/moment.min.js"></script>
   <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
   <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
-
-  <!-- Template Javascript -->
   <script src="js/main.js"></script>
   <script src="script.js"></script>
 </body>

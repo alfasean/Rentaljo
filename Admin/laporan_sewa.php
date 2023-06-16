@@ -28,56 +28,61 @@
 						</div>
 					</div>
 
-				<?php
-				$servername = "localhost";
-				$username = "root"; 
-				$password = ""; 
-				$dbname = "db_rental_motor";
-				
-				$conn = new mysqli($servername, $username, $password, $dbname);
+					<?php
+					$servername = "localhost";
+					$username = "root";
+					$password = "";
+					$dbname = "db_rental_motor";
 
-				if (!$conn) {
-					die("Koneksi database gagal: " . mysqli_connect_error());
-				}
+					$conn = new mysqli($servername, $username, $password, $dbname);
 
-				$no = 0;
+					if ($conn->connect_error) {
+						die("Koneksi database gagal: " . $conn->connect_error);
+					}
 
-				$query = "SELECT * FROM tb_sewa";
-				$result = mysqli_query($conn, $query);
+					$no = 0;
 
-				if (mysqli_num_rows($result) > 0) {
-		
-					echo '<table class="table table-striped table-hover">
-					<thead>
-					<tr>
-						<th>No</th>
-						<th>Customer Name</th>
-						<th>Motorcycle Name</th>
-						<th>Borrow Date</th>
-						<th>Return Date</th>
-						<th>Guarantee</th>
-					</tr>
-				</thead>';
+					$query = "SELECT tb_sewa.*, tb_customer.nama_customer, tb_motor.merk FROM tb_sewa
+							JOIN tb_customer ON tb_sewa.id_customer = tb_customer.id_customer
+							JOIN tb_motor ON tb_sewa.id_motor = tb_motor.id_motor";
+					$result = $conn->query($query);
 
-        while ($row = mysqli_fetch_assoc($result)) {
-			$no++;
-            echo '<tr>
-                    <td>' . $no . '</td>
-                    <td>as</td>
-                    <td>sa</td>
-                    <td>' . $row['tgl_pinjam'] . '</td>
-                    <td>' . $row['tgl_kembali'] . '</td>
-                    <td>' . $row['jaminan'] . '</td>
-                </tr>';
-        }
+					if ($result) {
+						if ($result->num_rows > 0) {
+							echo '<table class="table table-striped table-hover">
+									<thead>
+										<tr>
+											<th>No</th>
+											<th>Customer Name</th>
+											<th>Motorcycle Name</th>
+											<th>Borrow Date</th>
+											<th>Return Date</th>
+											<th>Guarantee</th>
+										</tr>
+									</thead>';
 
-        echo '</table>';
-    } else {
-        echo 'Tidak ada data motor.';
-    }
+							while ($row = $result->fetch_assoc()) {
+								$no++;
+								echo '<tr>
+										<td>' . $no . '</td>
+										<td>' . $row['nama_customer'] . '</td>
+										<td>' . $row['merk'] . '</td>
+										<td>' . $row['tgl_pinjam'] . '</td>
+										<td>' . $row['tgl_kembali'] . '</td>
+										<td>' . $row['jaminan'] . '</td>
+									</tr>';
+							}
 
-    mysqli_close($conn);
-	?>
+							echo '</table>';
+						} else {
+							echo 'Tidak ada data sewa.';
+						}
+					} else {
+						echo 'Error: ' . $conn->error;
+					}
+
+					$conn->close();
+					?>
 
 				</div>
 			</div>
