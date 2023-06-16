@@ -5,9 +5,9 @@ if (empty($_SESSION["session_username"])) {
     header('location:login.php');
 }
 
-// Form submission check
+
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
-    // Get the id from the query string
+    
     if (isset($_GET["id"])) {
         $id_motor = $_GET["id"];
         $id = $_SESSION["session_username"];
@@ -17,28 +17,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
         $jaminan = $_POST["jaminan"];
         $metode_pembayaran = $_POST["metode_pembayaran"];
 
-        // Mengambil ID customer dari session_username
+        
         $query = "SELECT id_customer FROM tb_customer WHERE username = '$id'";
         $result = $conn->query($query);
         if ($result->num_rows > 0) {
             $row = $result->fetch_assoc();
             $id_customer = $row["id_customer"];
 
-            // Mengambil tarif sewa motor
+            
             $query_motor = "SELECT harga FROM tb_motor WHERE id_motor = '$id_motor'";
             $result_motor = $conn->query($query_motor);
             if ($result_motor->num_rows > 0) {
                 $row_motor = $result_motor->fetch_assoc();
                 $harga = $row_motor["harga"];
 
-                // Menghitung total bayar
+                
                 $date1 = new DateTime($tgl_pinjam);
                 $date2 = new DateTime($tgl_kembali);
                 $diff = $date2->diff($date1);
                 $durasi_sewa = $diff->days;
                 $total_bayar = $harga * $durasi_sewa;
 
-                // Memasukkan data ke dalam tabel tb_sewa
+                
                 $sql = "INSERT INTO tb_sewa (id_customer, id_motor, tgl_pinjam, tgl_kembali, jaminan, metode_pembayaran, total_bayar)
                 VALUES ('$id_customer', '$id_motor', '$tgl_pinjam', '$tgl_kembali', '$jaminan', '$metode_pembayaran', '$total_bayar')";
 
@@ -208,11 +208,11 @@ form label {
 	<div class="table-responsive">
 		<div class="table-wrapper">
       <?php
-        // Mengambil data motor dari query string
+        
         if (isset($_GET["id"])) {
           $id_motor = $_GET["id"];
           
-          // Mengambil data motor berdasarkan id
+          
           $query_motor = "SELECT * FROM tb_motor WHERE id_motor = '$id_motor'";
           $result_motor = $conn->query($query_motor);
           
@@ -220,7 +220,7 @@ form label {
             $row_motor = $result_motor->fetch_assoc();
             $harga_sewa = $row_motor["harga_sewa"];
 
-            // Menampilkan harga sewa motor
+            
             echo '<div class="table-title">';
             echo '<div class="row">';
             echo '<div class="col-sm-6">';
@@ -228,22 +228,22 @@ form label {
             echo '</div>';
             echo '</div>';
 
-            // Memproses form submission
+            
             if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
-              // ... kode yang ada sebelumnya ...
+              
 
-              // Menghitung total bayar berdasarkan harga sewa dan durasi sewa
+              
               $tgl_pinjam = $_POST["tgl_pinjam"];
               $tgl_kembali = $_POST["tgl_kembali"];
 
-              // Menghitung selisih hari antara tanggal pinjam dan tanggal kembali
+              
               $date_diff = date_diff(date_create($tgl_pinjam), date_create($tgl_kembali));
               $durasi_sewa = $date_diff->format('%a');
 
-              // Menghitung total bayar
+              
               $total_bayar = $harga_sewa * $durasi_sewa;
 
-              // ... kode yang ada setelahnya ...
+              
             }
           } else {
             echo "Error: Data motor tidak ditemukan.";
@@ -279,11 +279,6 @@ form label {
             <option>-----</option>
             <option>Tunai</option>
           </select>
-        </div>
-
-        <div class="form-group">
-          <label>Total Bayar</label>
-          <input type="text" name="total_bayar" value="<?php echo isset($total_bayar) ? 'Rp ' . $total_bayar : ''; ?>" readonly class="form-control input">
         </div>
 
         <input type="submit" name="submit" value="Submit" class="btn btn-success" style="border-radius: 5px;">

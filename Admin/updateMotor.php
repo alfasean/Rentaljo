@@ -123,9 +123,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         </div>
 
                         <div class="form-group">
-                            <label>Status</label>
-                            <input type="text" value="<?php echo $row['status']; ?>" name="status" maxlength="200"
-                                class="form-control" required id="id_email">
+                        <label>Status</label>
+                        <select name="status" id="id_email">
+                            <option>-----</option>
+                            <option value="Tersedia" <?php if ($row['status'] == 'Tersedia') echo 'selected'; ?>>Tersedia</option>
+                            <option value="Tidak Tersedia" <?php if ($row['status'] == 'Tidak Tersedia') echo 'selected'; ?>>Tidak Tersedia</option>
+                        </select>
                         </div>
 
                         <div class="form-group">

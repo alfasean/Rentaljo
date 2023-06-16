@@ -33,11 +33,10 @@
   <div class="mt-5">
     <h1 class="h-unit">Pilihan Unit Kami</h1>
     <p class="p-unit">Kami menyediakan beberapa unit motor, mulai dari motor matic sampai manual</p>
-    <button class="pre-btn"><img src="img/arrow.png" alt="arrow" /></button>
-    <button class="nxt-btn"><img src="img/arrow.png" alt="arrow2" /></button>
     <div class="container-services mt-4">
+    <div class="row">
       <?php
-      session_start(); // Mulai sesi jika belum dimulai
+      session_start();
       $servername = "localhost";
       $username = "root";
       $password = "";
@@ -45,21 +44,21 @@
       $conn = new mysqli($servername, $username, $password, $dbname);
       $query_res = mysqli_query($conn, "SELECT * FROM tb_motor");
       while ($r = mysqli_fetch_array($query_res)) {
-          echo '<div class="row">
-                  <div class="col-md-4 mx-3 mb-3">
+          echo '
+                  <div class="col-md-4 mb-3 d-flex justify-content-center align-items-center">
                     <div class="card border-0" style="height: 100%;">
-                      <img class="card-img-top mx-auto" alt="img1" src="Admin/uploads/' . $r['gambar'] . '" />
+                      <img style="height: 100% class="card-img-top mx-auto" alt="img1" src="Admin/uploads/' . $r['gambar'] . '" />
                       <div class="card-body">
                         <p class="mx-auto judul">' . $r['merk'] . '</p>
                         <p class="card-text text-center">Rp ' . $r['harga'] . '</p>
                       </div>
                       <a href="index.php?p=form_sewa&id=' . $r['id_motor'] . '" class="btn sewa_button text-white mx-auto mt-4 mb-4">Sewa Sekarang</a>
                     </div>
-                  </div>
+                  
                 </div>';
       }
       ?>
-
+      </div>
     </div>
   </div>
   <!-- JavaScript Libraries -->
@@ -73,8 +72,7 @@
   <script src="lib/tempusdominus/js/moment.min.js"></script>
   <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
   <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
-  <script src="js/main.js"></script>
-  <script src="script.js"></script>
+  <script src="js/script.js?v=2"></script>
 </body>
 
 </html>

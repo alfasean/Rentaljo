@@ -430,53 +430,15 @@ box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
 border-radius: 20px;
 }
 
-.container-services {
+/* .container-services {
   padding: 0 10vw;
   display: flex;
   overflow-x: auto;
   scroll-behavior: smooth;
-}
+} */
 
 .container-services::-webkit-scrollbar {
   display: none;
-}
-
-.pre-btn,
-.nxt-btn {
-  border: none;
-  width: 76px;
-  height: 76px;
-  margin-top: 20%;
-  border-radius: 100%;
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: var(--merah);
-  border: 2px solid var(--putih);
-  cursor: pointer;
-  z-index: 8;
-}
-
-.pre-btn {
-  left: 0;
-  transform: rotate(180deg);
-}
-
-.nxt-btn {
-  right: 0;
-}
-
-.pre-btn img,
-.nxt-btn img {
-  width: 15px;
-  height: 30px;
-  opacity: 0.5;
-}
-
-.pre-btn:hover img,
-.nxt-btn:hover img {
-  opacity: 1;
 }
 
 .wrapper {

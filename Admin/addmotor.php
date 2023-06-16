@@ -91,7 +91,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <div class="form-group">
           <label>Status</label>
-          <input type="text" name="status" maxlength="200" class="form-control" required id="id_email">
+          <select name="status" id="id_email">
+            <option>-----</option>
+            <option>Tersedia</option>
+            <option>Tidak Tersedia</option>
+          </select>
         </div>
 
         <div class="form-group">

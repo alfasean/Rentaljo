@@ -50,8 +50,9 @@ require_once "connections/config.php";
                 <a href="index.php?p=service" class="nav-item nav-link">Services</a>
                 <a href="index.php?p=faq" class="nav-item nav-link">FAQ</a>
                 <?php if (isset($_SESSION["session_username"])): ?>
-                <a href="#" class="nav-item nav-link"><?= ucfirst($_SESSION["session_username"]) ?></a>
-                <a href="logout.php" class="nav-item nav-link">Logout</a>
+                <a href="index.php?p=orders" class="nav-item nav-link">Orders</a>
+                <a href="#" class="nav-item nav-link" style="color: #27374D;"><?= ucfirst($_SESSION["session_username"]) ?></a>
+                <a href="logout.php" class="nav-item nav-link" style="color: #27374D;">Logout</a>
                 <?php else: ?>
                 <a href="regis.php" class="nav-item nav-link">Signup</a>
                 <a href="login.php" class="nav-item nav-link">Login</a>
@@ -80,6 +81,9 @@ require_once "connections/config.php";
     		break;
     		case "form_sewa";
     			include 'rent_form.php';
+    		break;
+    		case "orders";
+    			include 'orders.php';
     		break;
     	}
     	?>
@@ -126,7 +130,7 @@ require_once "connections/config.php";
     <script src="lib/tempusdominus/js/moment.min.js"></script>
     <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
     <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
-    <script src="js/main.js"></script>
+    <script src="js/script.js?v=2"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js?v=2"
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">
     </script>
