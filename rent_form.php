@@ -1,29 +1,37 @@
 <?php
-session_start(); // Mulai sesi jika belum dimulai
+session_start();
 require_once "connections/config.php";
 if(empty($_SESSION["session_username"]))
 {
 	header('location:login.php');
 }
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+	$id = $_SESSION["session_username"];
     $tgl_pinjam = $_POST["tgl_pinjam"];
     $tgl_kembali = $_POST["tgl_kembali"];
     $jaminan = $_POST["jaminan"];
+	
+    $query = "SELECT id_customer FROM tb_customer WHERE username = '$id'";
+    $result = $conn->query($query);
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $id_customer = $row["id_customer"];
 
-    $sql = "INSERT INTO tb_sewa (tgl_pinjam, tgl_kembali, jaminan)
-    VALUES ('$tgl_pinjam', '$tgl_kembali', '$jaminan')";
+        $sql = "INSERT INTO tb_sewa (id_customer, tgl_pinjam, tgl_kembali, jaminan)
+        VALUES ('$id_customer', '$tgl_pinjam', '$tgl_kembali', '$jaminan')";
 
-    if ($conn->query($sql) === TRUE) {
-        $conn->close();
-        echo '<script>window.location.href = "index.php?p=service";</script>';
-        exit();
+        if ($conn->query($sql) === TRUE) {
+            $conn->close();
+            echo '<script>window.location.href = "index.php?p=service";</script>';
+            exit();
+        } else {
+            echo "Error: " . $sql . "<br>" . $conn->error;
+        }
     } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        echo "Error: ID customer tidak ditemukan.";
     }
 }
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">

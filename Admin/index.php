@@ -49,7 +49,7 @@ if(isset($_POST['tb_karyawan'])){
 <head>
     <meta charset="utf-8">
     <title>Login | RENTALJO</title>
-    <link rel="stylesheet" href="../login.css">
+    <link rel="stylesheet" href="../login.css?v=2">
     <!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
@@ -62,6 +62,7 @@ if(isset($_POST['tb_karyawan'])){
         </div>
         <div class="col-md-7">
             <form id="form_login" role="form" action="" method="post">
+                <h1 class="admin-login"><b>Admin Login</b></h1>
                 <?php if($err){ ?>
                 <div class="alert alert-danger d-flex align-items-center" role="alert">
                     <p><?php echo $err ?></p>

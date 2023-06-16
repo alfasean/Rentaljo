@@ -14,6 +14,11 @@
     $data = mysqli_fetch_assoc($result);
     $total_user = $data['total_user'];
 
+    $query = "SELECT COUNT(*) as total_rental FROM tb_sewa";
+    $result = mysqli_query($conn, $query);
+    $data = mysqli_fetch_assoc($result);
+    $total_rental = $data['total_rental'];
+
     $query = "SELECT COUNT(*) as total_karyawan FROM tb_karyawan";
     $result = mysqli_query($conn, $query);
     $data = mysqli_fetch_assoc($result);
@@ -52,7 +57,7 @@
               <!-- small box -->
               <div class="small-box bg-info">
                 <div class="inner">
-                  <h3>10</h3>
+                  <h3><?php echo $total_rental; ?></h3>
                   <p>Rental Totals</p>
                 </div>
                 <div class="icon">
