@@ -92,9 +92,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="form-group">
           <label>Status</label>
           <select name="status" id="id_email">
-            <option>-----</option>
-            <option>Tersedia</option>
-            <option>Tidak Tersedia</option>
+          <option>---</option>
+							<option value="0" <?= (!$update) ?: (($row["status"] != 0) ?: 'selected="on"') ?>>Tidak
+								Tersedia</option>
+							<option value="1" <?= (!$update) ?: (($row["status"] != 1) ?: 'selected="on"') ?>>Tersedia
+							</option>
           </select>
         </div>
 

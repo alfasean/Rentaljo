@@ -106,7 +106,6 @@ require_once "connections/config.php";
                     <ul>
                         <li><a href='index.php?p=home'>Home</a></li>
                         <li><a href='index.php?p=service'>Service</a></li>
-                        <li><a href='index.php?p=faq'>FAQ</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">

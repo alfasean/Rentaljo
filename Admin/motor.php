@@ -75,7 +75,7 @@
                     <td>' . $row['no_plat'] . '</td>
                     <td>' . $row['jenis_motor'] . '</td>
                     <td>' . $row['harga'] . '</td>
-                    <td>' . $row['status'] . '</td>
+					<td><span class="label label-' . ($row['status'] ? "success" : "danger") . '" style="background-color: ' . ($row['status'] ? "#54B435" : "#FF0000") . ';">' . ($row['status'] ? "Tersedia" : "Tidak Tersedia") . '</span></td>
 					<td><img src="uploads/' . $row['gambar'] . '" width="100" height="100" alt="Motor Image"></td>
 					<td>
 									<a href="admin.php?p=updatemotor&menu_upd='.$row['id_motor'].'"" class="edit"><i class="material-icons" data-toggle="tooltip"

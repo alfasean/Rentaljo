@@ -17,6 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
         $jaminan = $_POST["jaminan"];
         $metode_pembayaran = $_POST["metode_pembayaran"];
 
+        $status = "Belum Diambil";
         
         $query = "SELECT id_customer FROM tb_customer WHERE username = '$id'";
         $result = $conn->query($query);
@@ -39,8 +40,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
                 $total_bayar = $harga * $durasi_sewa;
 
                 
-                $sql = "INSERT INTO tb_sewa (id_customer, id_motor, tgl_pinjam, tgl_kembali, jaminan, metode_pembayaran, total_bayar)
-                VALUES ('$id_customer', '$id_motor', '$tgl_pinjam', '$tgl_kembali', '$jaminan', '$metode_pembayaran', '$total_bayar')";
+                $sql = "INSERT INTO tb_sewa (id_customer, id_motor, tgl_pinjam, tgl_kembali, jaminan, metode_pembayaran, total_bayar, status)
+                VALUES ('$id_customer', '$id_motor', '$tgl_pinjam', '$tgl_kembali', '$jaminan', '$metode_pembayaran', '$total_bayar', '$status')";
 
                 if ($conn->query($sql) === TRUE) {
                     $conn->close();
@@ -60,6 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
     }
 } 
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">

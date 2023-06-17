@@ -91,10 +91,13 @@ table.table td a:hover {
 	color: #2196F3;
 }
 table.table td a.edit {
-	color: #FFC107;
+	color: #F29727;
 }
 table.table td a.delete {
-	color: #F44336;
+	color: #CD1818;
+}
+table.table td a.detail {
+	color: #379237;
 }
 table.table td i {
 	font-size: 19px;

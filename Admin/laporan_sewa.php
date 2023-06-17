@@ -9,10 +9,11 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/style.css?v=2">
 	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+	<script src="https://kit.fontawesome.com/8353bdf612.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -58,7 +59,8 @@
 											<th>Motorcycle Name</th>
 											<th>Borrow Date</th>
 											<th>Return Date</th>
-											<th>Guarantee</th>
+											
+											<th>Actions</th>
 										</tr>
 									</thead>';
 
@@ -70,7 +72,14 @@
 										<td>' . $row['merk'] . '</td>
 										<td>' . $row['tgl_pinjam'] . '</td>
 										<td>' . $row['tgl_kembali'] . '</td>
-										<td>' . $row['jaminan'] . '</td>
+										
+										<td>
+									<div class="d-flex">
+									<a href="admin.php?p=detailsewa&menu_upd='.$row['id_sewa'].'"" class="detail"><i class="fa-solid fa-circle-info"></i></a>
+									<a href="admin.php?p=updatesewa&menu_upd='.$row['id_sewa'].'"" class="edit"><i class="fa-solid fa-pen-to-square"></i></a>
+									<a href="deleteSewa.php?menu_del='.$row['id_sewa'].'" class="delete"><i class="fa-solid fa-trash"></i></a>
+									</div>
+								</td>
 									</tr>';
 							}
 

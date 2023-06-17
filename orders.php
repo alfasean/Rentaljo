@@ -48,6 +48,7 @@ if ($result->num_rows > 0) {
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<script src="https://kit.fontawesome.com/8353bdf612.js" crossorigin="anonymous"></script>
 <!-- Customized Bootstrap Stylesheet -->
 <link href="css/bootstrap.min.css" rel="stylesheet">
 
@@ -68,7 +69,9 @@ if ($result->num_rows > 0) {
                     <th class="text-dark">Metode Pembayaran</th>
                     <th class="text-dark">Nama Motor</th>
                     <th class="text-dark">Harga</th>
+                    <th class="text-dark">Status</th>
                     <th class="text-dark">Total Bayar</th>
+                    <th class="text-dark">Aksi</th>
                 </tr>
             </thead>
             <tbody>
@@ -84,7 +87,9 @@ if ($result->num_rows > 0) {
                         echo "<td>" . $row_orderan['metode_pembayaran'] . "</td>";
                         echo "<td>" . $row_orderan['merk'] . "</td>";
                         echo "<td>" . $row_orderan['harga'] . "</td>";
+                        echo "<td class='text-center'><div style='background-color: #379237; color: #fff; border-radius: 10px; font-size: 12px;'>" . $row_orderan['status'] . "</div></td>";
                         echo "<td>" . $row_orderan['total_bayar'] . "</td>";
+                        echo '<td><a href="cancelSewa.php?menu_del=' . $row_orderan['id_sewa'] . '" class="delete" title="Cancel"><i class="fa-solid fa-ban"></i></a></td>';
                         echo "</tr>";
                         $no++;
                     }

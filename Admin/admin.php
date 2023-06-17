@@ -179,6 +179,12 @@ $nama_karyawan = $row['nama_karyawan'];
     		case "laporansewa";
     			include 'laporan_sewa.php';
     		break;
+    		case "updatesewa";
+    			include 'updateSewa.php';
+    		break;
+    		case "detailsewa";
+    			include 'detailSewa.php';
+    		break;
     	}
     	?>
     <!-- ./wrapper -->

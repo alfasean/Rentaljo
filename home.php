@@ -135,8 +135,8 @@
                         <div class="position-relative overflow-hidden">
                             <img class="img-fluid" src="img/roma.jpeg" alt="">
                             <div class="team-overlay position-absolute start-0 top-0 w-100 h-100">
-                                <a class="btn btn-square mx-1" href="https://www.linkedin.com/in/roma-mantiri-921370235/"><i class="fab fa-linkedin"></i></a>
-                                <a class="btn btn-square mx-1" href="https://www.instagram.com/rom.nfm/"><i class="fab fa-instagram"></i></a>
+                                <a class="btn btn-square mx-1" href="https://www.linkedin.com/in/roma-mantiri-921370235/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                                <a class="btn btn-square mx-1" href="https://www.instagram.com/rom.nfm/" target="_blank"><i class="fab fa-instagram"></i></a>
                             </div>
                         </div>
                         <div class="bg-light text-center p-4">
