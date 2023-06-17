@@ -128,7 +128,7 @@ form .signup-link{
 }
 
 form .pass-link a,
-form .signup-link {
+form .signup-link a{
   color: #234cad;
   text-decoration: none;
 }
