@@ -126,8 +126,9 @@ form .signup-link{
   margin-top: 20px;
   text-align: center;
 }
+
 form .pass-link a,
-form .signup-link a{
+form .signup-link {
   color: #234cad;
   text-decoration: none;
 }

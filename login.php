@@ -76,6 +76,9 @@ if(isset($_POST['tb_customer'])){
                 <div class="signup-link">
                     Don't have an account yet? <a href="regis.php">Signup</a>
                 </div>
+                <div class="signup-link">
+                    Login as <a href="/UAS_WEB/Admin/index.php">Admin</a>
+                </div>
             </form>
         </div>
     </div>
