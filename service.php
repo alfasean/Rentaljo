@@ -27,6 +27,8 @@
 
   <!-- CSS Stylesheet -->
   <link href="css/style.css?v=2" rel="stylesheet">
+
+  <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="e20536c8-03ff-4e40-8cf2-d42a1521bd29";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
 </head>
 
 <body>

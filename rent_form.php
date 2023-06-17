@@ -44,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
 
                 if ($conn->query($sql) === TRUE) {
                     $conn->close();
-                    echo '<script>window.location.href = "index.php?p=service";</script>';
+                    echo '<script>window.location.href = "index.php?p=orders";</script>';
                     exit();
                 } else {
                     echo "Error: " . $sql . "<br>" . $conn->error;
@@ -81,6 +81,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
 
 <!-- CSS Stylesheet -->
 <link href="css/style.css?v=2" rel="stylesheet">
+
+<script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="e20536c8-03ff-4e40-8cf2-d42a1521bd29";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
 
 <style>
   @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');

@@ -36,6 +36,8 @@ require_once "connections/config.php";
     <!-- CSS Stylesheet -->
     <link href="css/style.css?v=2" rel="stylesheet">
 
+    <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="e20536c8-03ff-4e40-8cf2-d42a1521bd29";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
+
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
         <a href="index.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
@@ -48,7 +50,6 @@ require_once "connections/config.php";
             <div class="navbar-nav ms-auto p-4 p-lg-0">
                 <a href="index.php?p=homepage" class="nav-item nav-link">Home</a>
                 <a href="index.php?p=service" class="nav-item nav-link">Services</a>
-                <a href="index.php?p=faq" class="nav-item nav-link">FAQ</a>
                 <?php if (isset($_SESSION["session_username"])): ?>
                 <a href="index.php?p=orders" class="nav-item nav-link">Orders</a>
                 <a href="#" class="nav-item nav-link" style="color: #27374D;"><?= ucfirst($_SESSION["session_username"]) ?></a>
@@ -75,9 +76,6 @@ require_once "connections/config.php";
     break;
     		case "service";
     		include 'service.php';
-    		break;
-    		case "faq";
-    			include 'faq.php';
     		break;
     		case "form_sewa";
     			include 'rent_form.php';
