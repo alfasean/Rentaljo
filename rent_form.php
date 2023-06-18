@@ -18,7 +18,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
 
         $status = "Belum Diambil";
 
-        // Mengubah status motor menjadi 0 atau tidak tersedia
         $update_status_query = "UPDATE tb_motor SET status = 0 WHERE id_motor = '$id_motor'";
         if ($conn->query($update_status_query) === FALSE) {
             echo "Error updating motor status: " . $conn->error;
@@ -39,14 +38,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
 
                 $date1 = new DateTime($tgl_pinjam);
                 $date2 = new DateTime($tgl_kembali);
+                $date3 = new DateTime();
+
                 $diff = $date2->diff($date1);
                 $durasi_sewa = $diff->days;
-                $total_bayar = $harga * $durasi_sewa;
 
-                $sql = "INSERT INTO tb_sewa (id_customer, id_motor, tgl_pinjam, tgl_kembali, jaminan, metode_pembayaran, total_bayar, status)
-                VALUES ('$id_customer', '$id_motor', '$tgl_pinjam', '$tgl_kembali', '$jaminan', '$metode_pembayaran', '$total_bayar', '$status')";
+                $denda = 0;
+                if ($date3 > $date2) {
+                    $interval = $date3->diff($date2);
+                    $hari_terlambat = $interval->days;
+                    $denda = $hari_terlambat * 50000;
+                }
 
-                if ($conn->query($sql) === TRUE) {
+                $total_bayar = $harga * $durasi_sewa + $denda;
+
+                $insert_query = "INSERT INTO tb_sewa (id_customer, id_motor, tgl_pinjam, tgl_kembali, total_bayar, denda, jaminan, metode_pembayaran, status) 
+                VALUES ('$id_customer', '$id_motor', '$tgl_pinjam', '$tgl_kembali', '$total_bayar', '$denda', '$jaminan', '$metode_pembayaran', '$status')";
+
+                if ($conn->query($insert_query) === TRUE) {
                     $conn->close();
                     echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18"></script>
                     <script>
@@ -62,7 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
                     </script>';
                     exit();
                 } else {
-                    echo "Error: " . $sql . "<br>" . $conn->error;
+                    echo "Error: " . $insert_query . "<br>" . $conn->error;
                 }
             } else {
                 echo "Error: Tarif sewa motor tidak ditemukan.";
@@ -75,8 +84,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
     }
 }
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -111,6 +118,7 @@ body {
 }
 .table-responsive {
     margin: 30px 0;
+    border-radius: 15px;
 }
 .table-wrapper {
 	background: #fff;
@@ -225,7 +233,7 @@ form label {
 <div class="content-wrapper">
 <div class="container-xl">
 	<div class="table-responsive">
-		<div class="table-wrapper">
+		<div class="table-wrapper fm">
       <?php
         
         if (isset($_GET["id"])) {
@@ -274,34 +282,36 @@ form label {
 
       <form method="post" action="" enctype="multipart/form-data">
         <div class="form-group">
-          <label>Tanggal Pinjam</label>
+          <label class="text">Tanggal Pinjam</label>
           <input type="date" name="tgl_pinjam" maxlength="200" class="form-control" required class="input">
         </div>
 
         <div class="form-group">
-          <label>Tanggal Kembali</label>
+          <label class="text">Tanggal Kembali</label>
           <input type="date" name="tgl_kembali" maxlength="200" class="form-control" required class="input">
         </div>
 
         <div class="form-group">
-          <label>Jaminan</label>
+          <label class="text">Jaminan</label>
           <select name="jaminan" class="input">
             <option>-----</option>
-            <option>KTP/SIM</option>
-            <option>Deposit Tunai</option>
+            <option class="text-black">KTP/SIM</option>
+            <option class="text-black">Deposit Tunai</option>
           </select>
         </div>
 
         <div class="form-group">
-          <label>Metode Pembayaran</label>
+          <label class="text">Metode Pembayaran</label>
           <select name="metode_pembayaran" class="input">
-            <option>-----</option>
-            <option>Tunai</option>
+            <option class="text-black">-----</option>
+            <option class="text-black">Tunai</option>
+            <option class="text-black">Transfer Bank</option>
           </select>
         </div>
 
+
         <input type="submit" name="submit" value="Submit" class="btn btn-success" style="border-radius: 5px;">
-        <p class="mt-3"><i>Note : Pembayaran dan penyerahan jaminan dilakukan ketika customer melakukan pengambilan motor</i></p>
+        <p class="mt-3 text"><i>Note : Pembayaran dan penyerahan jaminan dilakukan ketika customer melakukan pengambilan motor</i></p>
       </form>
     </div>
   </div>
@@ -318,7 +328,6 @@ form label {
   <script src="lib/tempusdominus/js/moment.min.js"></script>
   <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
   <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
-  <script src="js/main.js"></script>
   <script src="js/script.js"></script>
 </body>
 </html>

@@ -12,9 +12,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $tgl_kembali = $_POST["tgl_kembali"];
     $jaminan = $_POST["jaminan"];
     $status = $_POST["status"];
+    $metode_pembayaran = $_POST["metode_pembayaran"];
 
     if (isset($_GET['menu_upd'])) {
-        $sql = "UPDATE tb_sewa SET tgl_pinjam='$tgl_pinjam', tgl_kembali='$tgl_kembali', jaminan='$jaminan', status='$status' WHERE id_sewa='$_GET[menu_upd]'";
+        $sql = "UPDATE tb_sewa SET tgl_pinjam='$tgl_pinjam', tgl_kembali='$tgl_kembali', jaminan='$jaminan', metode_pembayaran='$metode_pembayaran', status='$status' WHERE id_sewa='$_GET[menu_upd]'";
 
         if ($status == 'Sudah Kembali') {
             $query_motor = "SELECT id_motor FROM tb_sewa WHERE id_sewa='$_GET[menu_upd]'";
@@ -124,6 +125,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <div class="form-group">
                             <label>Guarantee</label>
                             <input type="text" value="<?php echo $row['jaminan']; ?>" name="jaminan" maxlength="200" class="form-control" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Status</label>
+                            <select name="metode_pembayaran" class="form-control" required>
+                                <option value="Tunai" <?php if ($row['metode_pembayaran'] == 'Tunai') echo 'selected'; ?>>Tunai</option>
+                                <option value="Transfer Bank" <?php if ($row['metode_pembayaran'] == 'Transfer Bank') echo 'selected'; ?>>Transfer Bank</option>
+                            </select>
                         </div>
 
                         <div class="form-group">

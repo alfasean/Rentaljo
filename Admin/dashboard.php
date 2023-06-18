@@ -224,7 +224,7 @@ const myChart2 = new Chart(ctx2, {
       y: {
         display: true,
         title: {
-          display: true,
+          display: false,
           text: 'Total Sewa'
         }
       }

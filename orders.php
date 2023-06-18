@@ -8,7 +8,6 @@ if (empty($_SESSION["session_username"])) {
 
 $id = $_SESSION["session_username"];
 
-
 $query = "SELECT id_customer FROM tb_customer WHERE username = ?";
 $stmt = $conn->prepare($query);
 $stmt->bind_param("s", $id);
@@ -71,19 +70,20 @@ if ($result->num_rows > 0) {
 
 <body>
     <div class="container mt-5">
-        <table class="table table-striped mt-3">
+        <table class="table mt-3">
             <thead>
                 <tr>
-                    <th class="text-dark">No.</th>
-                    <th class="text-dark">Tanggal Pinjam</th>
-                    <th class="text-dark">Tanggal Kembali</th>
-                    <th class="text-dark">Jaminan</th>
-                    <th class="text-dark">Metode Pembayaran</th>
-                    <th class="text-dark">Nama Motor</th>
-                    <th class="text-dark">Harga</th>
-                    <th class="text-dark">Status</th>
-                    <th class="text-dark">Total Bayar</th>
-                    <th class="text-dark">Aksi</th>
+                    <th class="text-dark text">No.</th>
+                    <th class="text-dark text">Tanggal Pinjam</th>
+                    <th class="text-dark text">Tanggal Kembali</th>
+                    <th class="text-dark text">Jaminan</th>
+                    <th class="text-dark text">Metode Pembayaran</th>
+                    <th class="text-dark text">Nama Motor</th>
+                    <th class="text-dark text">Harga</th>
+                    <th class="text-dark text">Status</th>
+                    <th class="text-dark text">Denda</th>
+                    <th class="text-dark text">Total Bayar</th>
+                    <th class="text-dark text">Aksi</th>
                 </tr>
             </thead>
             <tbody>
@@ -92,15 +92,22 @@ if ($result->num_rows > 0) {
                     $no = 1;
                     while ($row_orderan = $result_orderan->fetch_assoc()) {
                         echo "<tr>";
-                        echo "<td>" . $no . "</td>";
-                        echo "<td>" . $row_orderan['tgl_pinjam'] . "</td>";
-                        echo "<td>" . $row_orderan['tgl_kembali'] . "</td>";
-                        echo "<td>" . $row_orderan['jaminan'] . "</td>";
-                        echo "<td>" . $row_orderan['metode_pembayaran'] . "</td>";
-                        echo "<td>" . $row_orderan['merk'] . "</td>";
-                        echo "<td>" . $row_orderan['harga'] . "</td>";
-                        echo "<td class='text-center'><div style='background-color: #379237; color: #fff; border-radius: 10px; font-size: 12px;'>" . $row_orderan['status'] . "</div></td>";
-                        echo "<td>" . $row_orderan['total_bayar'] . "</td>";
+                        echo "<td class='text-dark text'>" . $no . "</td>";
+                        echo "<td class='text-dark text'>" . $row_orderan['tgl_pinjam'] . "</td>";
+                        echo "<td class='text-dark text'>" . $row_orderan['tgl_kembali'] . "</td>";
+                        echo "<td class='text-dark text'>" . $row_orderan['jaminan'] . "</td>";
+                        echo "<td class='text-dark text'>" . $row_orderan['metode_pembayaran'] . "</td>";
+                        echo "<td class='text-dark text'>" . $row_orderan['merk'] . "</td>";
+                        echo "<td class='text-dark text'>" . $row_orderan['harga'] . "</td>";
+                        echo "<td class='text-center'><div style='background-color: #379237; color: #fff; border-radius: 10px; font-size: 11px; padding: 5px;'>" . $row_orderan['status'] . "</div></td>";
+                        
+                        if ($row_orderan['status'] === "Sudah Kembali") {
+                            echo "<td><div class='text-center' style='background-color: #379237; color: #fff; border-radius: 10px; font-size: 11px; padding: 5px;'> Lunas</div></td>";
+                            echo "<td><div class='text-center' style='background-color: #379237; color: #fff; border-radius: 10px; font-size: 11px; padding: 5px;'> Lunas</div></td>";
+                        } else {
+                            echo "<td class='text'>" . $row_orderan['denda'] . "</td>";
+                            echo "<td class='text'>" . $row_orderan['total_bayar'] . "</td>";
+                        }
                         
                         if ($row_orderan['status'] != "Belum Kembali" && $row_orderan['status'] != "Sudah Kembali") {
                             echo '<td><a href="cancelSewa.php?menu_del=' . $row_orderan['id_sewa'] . '" class="delete" title="Cancel"><i class="fa-solid fa-ban"></i></a></td>';
@@ -112,11 +119,12 @@ if ($result->num_rows > 0) {
                         $no++;
                     }
                 } else {
-                    echo "<tr><td colspan='8'>Tidak ada orderan sewa motor.</td></tr>";
+                    echo "<tr><td colspan='8' class='text'>Tidak ada orderan sewa motor.</td></tr>";
                 }
                 ?>
             </tbody>
         </table>
+        <p class="mt-3 text"><i>Note : Semua Keterlambatan Pengembalian Motor Akan Dikenakan Denda Sebesar 50.000/Hari</i></p>
     </div>
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -129,7 +137,6 @@ if ($result->num_rows > 0) {
     <script src="lib/tempusdominus/js/moment.min.js"></script>
     <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
     <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
-    <script src="js/main.js"></script>
     <script src="js/script.js"></script>
 </body>
 

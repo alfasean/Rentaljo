@@ -11,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $no_plat = $_POST["no_plat"];
     $jenis_motor = $_POST["jenis_motor"];
     $harga = $_POST["harga"];
-    $status = $_POST["status"];
+    $status = ($_POST["status"] == "Tersedia") ? 1 : 0;
 
     $gambar = basename($_FILES['gambar']['name']);
     $gambar_path = "uploads/" . $gambar;
@@ -123,18 +123,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         </div>
 
                         <div class="form-group">
-                        <label>Status</label>
-                        <select name="status" id="id_email">
-                            <option>-----</option>
-                            <option value="Tersedia" <?php if ($row['status'] == 'Tersedia') echo 'selected'; ?>>Tersedia</option>
-                            <option value="Tidak Tersedia" <?php if ($row['status'] == 'Tidak Tersedia') echo 'selected'; ?>>Tidak Tersedia</option>
-                        </select>
+                            <label>Status</label>
+                            <select name="status" id="id_email">
+                                <option>-----</option>
+                                <option value="Tersedia" <?php if ($row['status'] == 1) echo 'selected'; ?>>Tersedia</option>
+                                <option value="Tidak Tersedia" <?php if ($row['status'] == 0) echo 'selected'; ?>>Tidak Tersedia</option>
+                            </select>
                         </div>
 
                         <div class="form-group">
                             <label for="formFile" class="form-label">Image</label>
                             <div class="custom-file">
-                                <input type="file" name="gambar" class="form-control" id="id_avatar">
+                                <input type="file" name="gambar" class="form-control" id="id_avatar" <?php echo $row['gambar']; ?>>
                             </div>
                         </div>
 

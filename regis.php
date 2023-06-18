@@ -36,7 +36,7 @@
                </div>
                <div class="bb">
                   <div class="field">
-                     <input type="number" name="no_hp" id="no_hp" required>
+                     <input type="number" name="no_hp" id="no_hp" pattern="08\d{10}" required>
                      <label>Nomor Handphone</label>
                   </div>
                   <div class="field">
@@ -58,6 +58,15 @@
          </form>
       </div>
    </div>
+
+   <script>
+   document.getElementById('no_hp').addEventListener('input', function() {
+   this.setCustomValidity('');
+   if (!this.value.match(/^08\d{10}$/)) {
+      this.setCustomValidity('Nomor HP harus diawali dengan "08" dan memiliki panjang 12 karakter.');
+   }
+});
+</script>
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">
    </script>

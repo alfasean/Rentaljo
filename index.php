@@ -3,10 +3,10 @@ session_start();
 require_once "connections/config.php";
 ?>
 
-<!doctype html>
+<!DOCTYPE HTML>
 <html lang="en">
-
 <head>
+    <link rel="shortcut icon" href="img/logo1.png" type="image/x-icon">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>RENTALJO | Sewa Motor Terbaik</title>
@@ -34,12 +34,12 @@ require_once "connections/config.php";
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- CSS Stylesheet -->
-    <link href="css/style.css?v=2" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
 
     <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="e20536c8-03ff-4e40-8cf2-d42a1521bd29";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
 
     <!-- Navbar Start -->
-    <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
+    <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0 navv">
         <a href="index.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
             <h2 class="m-0 text-primary"><img src="img/logo1.png" alt="logo" style="width: 85px; height: 85px;"></h2>
         </a>
@@ -48,20 +48,105 @@ require_once "connections/config.php";
         </button>
         <div class="collapse navbar-collapse px-4" id="navbarCollapse">
             <div class="navbar-nav ms-auto p-4 p-lg-0">
-                <a href="index.php?p=homepage" class="nav-item nav-link">Home</a>
-                <a href="index.php?p=service" class="nav-item nav-link">Services</a>
+                <a href="index.php?p=homepage" class="nav-item nav-link text">Home</a>
+                <a href="index.php?p=service" class="nav-item nav-link text">Services</a>
                 <?php if (isset($_SESSION["session_username"])): ?>
-                <a href="index.php?p=orders" class="nav-item nav-link">Orders</a>
-                <a href="#" class="nav-item nav-link" style="color: #27374D;"><?= ucfirst($_SESSION["session_username"]) ?></a>
-                <a href="logout.php" class="nav-item nav-link" style="color: #27374D;">Logout</a>
+                <a href="index.php?p=orders" class="nav-item nav-link text">Orders</a>
+                <a href="#" class="nav-item nav-link text" style="color: #27374D;"><?= ucfirst($_SESSION["session_username"]) ?></a>
+                <a href="logout.php" class="nav-item nav-link text" style="color: #27374D;">Logout</a>
                 <?php else: ?>
-                <a href="regis.php" class="nav-item nav-link">Signup</a>
-                <a href="login.php" class="nav-item nav-link">Login</a>
+                <a href="regis.php" class="nav-item nav-link text">Signup</a>
+                <a href="login.php" class="nav-item nav-link text">Login</a>
                 <?php endif; ?>
+                <div class="d-flex align-items-center">
+                <label class="switch">
+                    <input type="checkbox" class="input" id="darkmode">
+                    <span class="slider"></span>
+                </label>
+                </div>
             </div>
         </div>
     </nav>
     <!-- Navbar End -->
+
+    <style>
+        .switch {
+        font-size: 17px;
+        position: relative;
+        display: inline-block;
+        width: 3.5em;
+        height: 2em;
+        }
+
+        .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+        }
+
+        .slider {
+        --background: #28096b;
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: var(--background);
+        transition: .5s;
+        border-radius: 30px;
+        }
+
+        .slider:before {
+        position: absolute;
+        content: "";
+        height: 1.4em;
+        width: 1.4em;
+        border-radius: 50%;
+        left: 10%;
+        bottom: 15%;
+        box-shadow: inset 8px -4px 0px 0px #fff000;
+        background: var(--background);
+        transition: .5s;
+        }
+
+        input:checked + .slider {
+        background-color: #522ba7;
+        }
+
+        input:checked + .slider:before {
+        transform: translateX(100%);
+        box-shadow: inset 15px -4px 0px 15px #fff000;
+        }
+
+        .dark {
+            background-color: #150050 !important;
+        }
+
+        .dark .dm {
+            background-color: #270082 !important;
+        }
+
+        .dark .text {
+            color: #fff !important;
+        }
+
+        .dark .footer {
+            background-color: #270082 !important;
+        }
+
+        .dark .icf {
+            background-color: #fff !important;
+        }
+
+        .dark .navv{
+            background-color: #1D267D !important;
+        }
+
+        .dark .fm {
+            background-color: #270082 !important;
+        }
+    </style>
 </head>
 
 <body>
@@ -90,35 +175,56 @@ require_once "connections/config.php";
         <div class="container">
             <div class="row">
                 <div class="footer-col">
-                    <h4>IKUTI KAMI</h4>
+                    <h4 class="text">IKUTI KAMI</h4>
                     <div class="social-links">
-                        <a href='https://www.facebook.com/' target="_blank"> <i class="fab fa-facebook-f"></i></a>
-                        <a href='https://www.instagram.com/' target="_blank"> <i class="fab fa-instagram"></i></a>
-                        <a href='https://www.youtube.com/' target="_blank"> <i class="fab fa-youtube"></i></a>
+                        <a href='https://www.facebook.com/' target="_blank" class="icf"> <i class="fab fa-facebook-f"></i></a>
+                        <a href='https://www.instagram.com/' target="_blank" class="icf"> <i class="fab fa-instagram"></i></a>
+                        <a href='https://www.youtube.com/' target="_blank" class="icf"> <i class="fab fa-youtube"></i></a>
                     </div>
                 </div>
                 <div class="footer-col">
-                    <h4>ALAMAT</h4>
-                    <p>Bahu, Manado</p>
+                    <h4 class="text">ALAMAT</h4>
+                    <p class="text">Bahu, Manado</p>
                 </div>
                 <div class="footer-col">
-                    <h4>LAYANAN</h4>
+                    <h4 class="text">LAYANAN</h4>
                     <ul>
-                        <li><a href='index.php?p=home'>Home</a></li>
-                        <li><a href='index.php?p=service'>Service</a></li>
+                        <li><a class="text" href='index.php?p=home'>Home</a></li>
+                        <li><a class="text" href='index.php?p=service'>Service</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <p class="footer-copyright">© Copyright 2022 Web Developed by <a target="_blank"
-                            href="https://www.instagram.com/"><b>Rentaljo Team</b></a></p>
+                    <p class="footer-copyright text">© Copyright 2022 Web Developed by <a target="_blank"
+                            href="https://www.instagram.com/"><b class="text">Rentaljo Team</b></a></p>
                 </div>
             </div>
         </div>
     </footer>
 
+
+    <script>
+        const toggleSwitch = document.querySelector('input[type="checkbox"]');
+
+        if(localStorage.getItem('darkModeEnabled')){
+        document.body.className = 'dark';
+        toggleSwitch.checked = true;
+        }
+
+        const body = document.querySelector('body');
+
+        toggleSwitch.addEventListener('click', function(e) {
+        const {checked} = toggleSwitch;
+        if (checked) {
+            localStorage.setItem('darkModeEnabled', true);
+        } else {
+            localStorage.removeItem('darkModeEnabled');
+        }
+        document.body.className = checked ? 'dark' : '' 
+        })
+    </script>
+
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="lib/wow/wow.min.js"></script>
     <script src="lib/easing/easing.min.js"></script>
     <script src="lib/waypoints/waypoints.min.js"></script>
@@ -128,9 +234,6 @@ require_once "connections/config.php";
     <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
     <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
     <script src="js/script.js?v=2"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js?v=2"
-        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">
-    </script>
 </body>
 
 </html>

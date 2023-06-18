@@ -6,10 +6,6 @@ require_once "connections/config.php";
 $err        = "";
 $username   = "";
 
-// if(isset($_SESSION['session_username'])){
-//     header("location:index.php");
-//     exit();
-// }
 
 if(isset($_POST['tb_customer'])){
     $username   = $_POST['username'];

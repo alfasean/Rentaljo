@@ -27,7 +27,7 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- CSS Stylesheet -->
-    <link href="css/style.css" rel="stylesheet">
+    <link href="css/style.css?v=2" rel="stylesheet">
 
     <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="e20536c8-03ff-4e40-8cf2-d42a1521bd29";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
 </head>
@@ -92,29 +92,29 @@
         <div class="container">
             <div class="row g-4">
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="d-flex py-5 px-4">
-                        <i class="fas fa-money-bill-wave fa-3x text-primary flex-shrink-0"></i>
+                    <div class="d-flex py-5 px-4 dm">
+                        <i class="fas fa-money-bill-wave fa-3x text-primary flex-shrink-0 ic"></i>
                         <div class="ps-4">
-                            <h5 class="mb-3">Mudah dan Murah</h5>
-                            <p>Syarat Mudah Untuk Wisatawan & Harga Termurah Di Kota Manado</p>
+                            <h5 class="mb-3 text">Mudah dan Murah</h5>
+                            <p class="text">Syarat Mudah Untuk Wisatawan & Harga Termurah Di Kota Manado</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="d-flex bg-light py-5 px-4">
-                        <i class="fas fa-user-cog fa-3x text-primary flex-shrink-0"></i>
+                    <div class="d-flex bg-light py-5 px-4 dm">
+                        <i class="fas fa-user-cog fa-3x text-primary flex-shrink-0 ic"></i>
                         <div class="ps-4">
-                            <h5 class="mb-3">Support 24 Jam</h5>
-                            <p>Dapat Dihubungi 24 Jam Dan Siap Merespon Dengan Cepat Dan Sigap</p>
+                            <h5 class="mb-3 text">Support 24 Jam</h5>
+                            <p class="text">Dapat Dihubungi 24 Jam Dan Siap Merespon Dengan Cepat Dan Sigap</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="d-flex py-5 px-4"> 
-                        <i class="fas fa-map-marker-alt fa-3x text-primary flex-shrink-0"></i>
+                    <div class="d-flex py-5 px-4 dm"> 
+                        <i class="fas fa-map-marker-alt fa-3x text-primary flex-shrink-0 ic"></i>
                         <div class="ps-4">
-                            <h5 class="mb-3">Free Antar Jemput</h5>
-                            <p>Dimana Pun Kamu Berada Kami Siap Mengantar Dan Menjemput Unit Tanpa Dikenakan Biaya Lagi</p>
+                            <h5 class="mb-3 text">Free Antar Jemput</h5>
+                            <p class="text">Dimana Pun Kamu Berada Kami Siap Mengantar Dan Menjemput Unit Tanpa Dikenakan Biaya Lagi</p>
                         </div>
                     </div>
                 </div>
@@ -127,7 +127,7 @@
     <div class="container-xxl py-5">
         <div class="container">
             <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                <h1 class="mb-5">DEVELOPER</h1>
+                <h1 class="mb-5 text">DEVELOPER</h1>
             </div>
             <div class="row g-4">
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
@@ -139,9 +139,9 @@
                                 <a class="btn btn-square mx-1" href="https://www.instagram.com/rom.nfm/" target="_blank"><i class="fab fa-instagram"></i></a>
                             </div>
                         </div>
-                        <div class="bg-light text-center p-4">
-                            <h5 class="fw-bold mb-0">Roma Mantiri</h5>
-                            <small>Fullstack Developer</small>
+                        <div class="bg-light text-center p-4 dm">
+                            <h5 class="fw-bold mb-0 text">Roma Mantiri</h5>
+                            <small class="text">Fullstack Developer</small>
                         </div>
                     </div>
                 </div>
@@ -154,9 +154,9 @@
                             <a class="btn btn-square mx-1" href="https://www.instagram.com/alfaseannnnnn/" target="_blank"><i class="fab fa-instagram"></i></a>
                             </div>
                         </div>
-                        <div class="bg-light text-center p-4">
-                            <h5 class="fw-bold mb-0">Alfa Sean</h5>
-                            <small>Fullstack Developer</small>
+                        <div class="bg-light text-center p-4 dm">
+                            <h5 class="fw-bold mb-0 text">Alfa Sean</h5>
+                            <small class="text">Fullstack Developer</small>
                         </div>
                     </div>
                 </div>
@@ -169,9 +169,9 @@
                             <a class="btn btn-square mx-1" href=""><i class="fab fa-instagram"></i></a>
                             </div>
                         </div>
-                        <div class="bg-light text-center p-4">
-                            <h5 class="fw-bold mb-0">Juliansyah Daud</h5>
-                            <small>Fullstack Developer</small>
+                        <div class="bg-light text-center p-4 dm">
+                            <h5 class="fw-bold mb-0 text">Juliansyah Daud</h5>
+                            <small class="text">Fullstack Developer</small>
                         </div>
                     </div>
                 </div>
@@ -192,7 +192,6 @@
     <script src="lib/tempusdominus/js/moment.min.js"></script>
     <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
     <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
-    <script src="js/main.js"></script>
     <script src="js/script.js"></script>
 </body>
 

@@ -62,7 +62,6 @@ if(isset($_POST['tb_karyawan'])){
         </div>
         <div class="col-md-7">
             <form id="form_login" role="form" action="" method="post">
-                <h1 class="admin-login"><b>Admin Login</b></h1>
                 <?php if($err){ ?>
                 <div class="alert alert-danger d-flex align-items-center" role="alert">
                     <p><?php echo $err ?></p>
