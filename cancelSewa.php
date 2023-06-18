@@ -11,7 +11,6 @@ session_start();
 if(isset($_GET['menu_del']) && !empty($_GET['menu_del'])){
     $sewa_id = $_GET['menu_del'];
     
-    // Hapus data sewa berdasarkan ID
     $query = "DELETE FROM tb_sewa WHERE id_sewa = ?";
     $stmt = $conn->prepare($query);
     $stmt->bind_param("i", $sewa_id);

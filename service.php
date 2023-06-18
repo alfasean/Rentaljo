@@ -37,33 +37,37 @@
     <p class="p-unit">Kami menyediakan beberapa unit motor, mulai dari motor matic sampai manual</p>
     <div class="container-services mt-4">
     <div class="row">
-      <?php
-      session_start();
-      $servername = "localhost";
-      $username = "root";
-      $password = "";
-      $dbname = "db_rental_motor";
-      $conn = new mysqli($servername, $username, $password, $dbname);
-      $query_res = mysqli_query($conn, "SELECT * FROM tb_motor");
-      while ($r = mysqli_fetch_array($query_res)) {
-          echo '
-                  <div class="col-md-3 mb-3 d-flex justify-content-center align-items-center">
-                    <div class="card border-0" style="height: 100%;">
-                      <img style="height: 100% class="card-img-top mx-auto" alt="img1" src="Admin/uploads/' . $r['gambar'] . '" />
-                      <div class="card-body">
-                        <p class="mx-auto judul">' . $r['merk'] . '</p>
-                        <p class="card-text text-center">Rp ' . $r['harga'] . '</p>
-                        <div class="d-flex justify-content-center align-items-center">
+    <?php
+session_start();
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "db_rental_motor";
+$conn = new mysqli($servername, $username, $password, $dbname);
+$query_res = mysqli_query($conn, "SELECT * FROM tb_motor");
+while ($r = mysqli_fetch_array($query_res)) {
+    echo '
+        <div class="col-md-3 mb-3 d-flex justify-content-center align-items-center">
+            <div class="card border-0" style="height: 100%;">
+                <img style="height: 100% class="card-img-top mx-auto" alt="img1" src="Admin/uploads/' . $r['gambar'] . '" />
+                <div class="card-body">
+                    <p class="mx-auto judul">' . $r['merk'] . '</p>
+                    <p class="card-text text-center">Rp ' . $r['harga'] . '</p>
+                    <div class="d-flex justify-content-center align-items-center">
                         <span class="label label-' . ($r['status'] ? "success" : "danger") . '" style="background-color: ' . ($r['status'] ? "#54B435" : "#CD1818") . '; color: ' . ($r['status'] ? "#FFF" : "#FFF") . '; border-radius: ' . ($r['status'] ? "5px" : "5px") . '; padding: ' . ($r['status'] ? "5px" : "5px") . ';">' . ($r['status'] ? "Tersedia" : "Tidak Tersedia") . '</span>
-                        </div>
-                      </div>
-                      <a href="<?=' . ($r['status']) ? "index.php?p=form_sewa&id=$row[id_motor]" : "#" ?>" class="btn btn-primary"
-						          <?=($r['status']) ?: "disabled" ?>>Sewa Sekarang!</a>
                     </div>
-                  
                 </div>';
+
+          if ($r['status']) {
+              echo '<a href="index.php?p=form_sewa&id=' . $r['id_motor'] . '" class="btn sewa_button text-white mx-auto mt-4 mb-4">Sewa Sekarang</a>';
+          } else {
+              echo '<button class="btn sewa_button text-white mx-auto mt-4 mb-4" disabled style="background-color: #000">Sewa Sekarang</button>';
+          }
+          echo '</div>
+              </div>';
       }
       ?>
+
       </div>
     </div>
   </div>

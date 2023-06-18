@@ -5,9 +5,8 @@ if (empty($_SESSION["session_username"])) {
     header('location:login.php');
 }
 
-
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
-    
+
     if (isset($_GET["id"])) {
         $id_motor = $_GET["id"];
         $id = $_SESSION["session_username"];
@@ -18,34 +17,49 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
         $metode_pembayaran = $_POST["metode_pembayaran"];
 
         $status = "Belum Diambil";
-        
+
+        // Mengubah status motor menjadi 0 atau tidak tersedia
+        $update_status_query = "UPDATE tb_motor SET status = 0 WHERE id_motor = '$id_motor'";
+        if ($conn->query($update_status_query) === FALSE) {
+            echo "Error updating motor status: " . $conn->error;
+            exit();
+        }
+
         $query = "SELECT id_customer FROM tb_customer WHERE username = '$id'";
         $result = $conn->query($query);
         if ($result->num_rows > 0) {
             $row = $result->fetch_assoc();
             $id_customer = $row["id_customer"];
 
-            
             $query_motor = "SELECT harga FROM tb_motor WHERE id_motor = '$id_motor'";
             $result_motor = $conn->query($query_motor);
             if ($result_motor->num_rows > 0) {
                 $row_motor = $result_motor->fetch_assoc();
                 $harga = $row_motor["harga"];
 
-                
                 $date1 = new DateTime($tgl_pinjam);
                 $date2 = new DateTime($tgl_kembali);
                 $diff = $date2->diff($date1);
                 $durasi_sewa = $diff->days;
                 $total_bayar = $harga * $durasi_sewa;
 
-                
                 $sql = "INSERT INTO tb_sewa (id_customer, id_motor, tgl_pinjam, tgl_kembali, jaminan, metode_pembayaran, total_bayar, status)
                 VALUES ('$id_customer', '$id_motor', '$tgl_pinjam', '$tgl_kembali', '$jaminan', '$metode_pembayaran', '$total_bayar', '$status')";
 
                 if ($conn->query($sql) === TRUE) {
                     $conn->close();
-                    echo '<script>window.location.href = "index.php?p=orders";</script>';
+                    echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18"></script>
+                    <script>
+                      document.addEventListener("DOMContentLoaded", function() {
+                        Swal.fire({
+                          icon: "success",
+                          title: "Good job!",
+                          text: "Sukses Melakukan Sewa ;)"
+                        }).then(function() {
+                          window.location.href = "index.php?p=orders";
+                        });
+                      });
+                    </script>';
                     exit();
                 } else {
                     echo "Error: " . $sql . "<br>" . $conn->error;
@@ -59,8 +73,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
     } else {
         echo "Error: Invalid request.";
     }
-} 
+}
 ?>
+
 
 
 <!DOCTYPE html>

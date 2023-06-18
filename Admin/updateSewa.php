@@ -15,6 +15,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (isset($_GET['menu_upd'])) {
         $sql = "UPDATE tb_sewa SET tgl_pinjam='$tgl_pinjam', tgl_kembali='$tgl_kembali', jaminan='$jaminan', status='$status' WHERE id_sewa='$_GET[menu_upd]'";
+
+        if ($status == 'Sudah Kembali') {
+            $query_motor = "SELECT id_motor FROM tb_sewa WHERE id_sewa='$_GET[menu_upd]'";
+            $result_motor = $conn->query($query_motor);
+            if ($result_motor->num_rows > 0) {
+                $row_motor = $result_motor->fetch_assoc();
+                $id_motor = $row_motor["id_motor"];
+
+                $update_motor_query = "UPDATE tb_motor SET status='1' WHERE id_motor='$id_motor'";
+                if ($conn->query($update_motor_query) === FALSE) {
+                    echo "Error updating motor status: " . $conn->error;
+                    exit();
+                }
+            } else {
+                echo "Error: Failed to retrieve motor data.";
+                exit();
+            }
+        }
     } else {
         echo "Invalid request.";
         exit();
@@ -29,6 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
+
 
 
 <!DOCTYPE html>
