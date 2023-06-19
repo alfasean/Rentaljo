@@ -45,13 +45,15 @@
   <div class="mt-5">
     <h1 class="h-unit text">Pilihan Unit Kami</h1>
     <p class="p-unit text">Kami menyediakan beberapa unit motor, mulai dari motor matic sampai manual</p>
-    <form action="pencarian.php" method="GET">
-      <div class="container">
-      <div class="group">
-        <input placeholder="Search" type="search" class="input" name="search">
-      </div>
-      </div>
-    </form>
+    <div class="container d-flex justify-content-center mt-5">
+      <form action="pencarian.php" method="GET" class="w-50">
+        <div class="input-group">
+          <input type="search" class="form-control" placeholder="Search" name="search">
+          <button type="submit" class="btn btn-primary" style="border-radius: 3px;">Search</button>
+        </div>
+      </form>
+    </div>
+
     <div class="container-services mt-4">
       <div class="row">
         <?php
@@ -88,7 +90,7 @@
       </div>
     </div>
   </div>
-  
+
   <!-- JavaScript Libraries -->
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>

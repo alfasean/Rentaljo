@@ -213,6 +213,11 @@ form label {
         </div>
 
         <div class="form-group">
+        <label class="text">Nomor Rekening</label>
+        <input type="text" name="total_bayar" value="2839-1021-9322-74-9 / A.n Sewa Motor Rentaljo" readonly class="form-control input">
+        </div>
+
+        <div class="form-group">
           <label class="text">Deskripsi</label>
           <input type="text" name="deskripsi" maxlength="200" class="form-control" class="input">
         </div>

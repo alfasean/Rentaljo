@@ -751,7 +751,7 @@ font-family: 'Poppins', sans-serif;
  }
  
  .input {
-  width: 100%;
+  width: 100% !important;
   height: 40px;
   line-height: 28px;
   padding: 0 1rem;

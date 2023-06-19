@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 19 Jun 2023 pada 15.07
+-- Waktu pembuatan: 19 Jun 2023 pada 16.01
 -- Versi server: 10.4.27-MariaDB
 -- Versi PHP: 8.0.25
 
@@ -55,7 +55,8 @@ INSERT INTO `tb_customer` (`id_customer`, `username`, `password`, `nama_customer
 (99, 'josh123', '689e064e6a5ff0dc90387bdaa52f2fba', 'Josua ', 'Pria', 'Bahu', '082173289218'),
 (100, 'aditya', '057829fa5a65fc1ace408f490be486ac', 'Aditya ', 'Pria', 'Sario', '0823273821'),
 (101, 'rizaldy21', '38fa51d6d63ea1e16e0853fb6e9ae496', 'Mustakim', 'Pria', 'Kleak', '1121232323'),
-(104, 'cela123', '42bc352460e9ad5c8badc00730a73bec', 'Gracella Kolondam', 'Wanita', 'Bahu', '081218213231');
+(104, 'cela123', '42bc352460e9ad5c8badc00730a73bec', 'Gracella Kolondam', 'Wanita', 'Bahu', '081218213231'),
+(107, 'jul123', '0f7f98d0796f5f9f48f52985bedd841e', 'Juliansyah', 'Pria', 'Bahu, Manado', '082296624873');
 
 -- --------------------------------------------------------
 
@@ -102,7 +103,7 @@ CREATE TABLE `tb_motor` (
 
 INSERT INTO `tb_motor` (`id_motor`, `no_plat`, `jenis_motor`, `merk`, `gambar`, `harga`, `status`) VALUES
 (84, 'DB 2124 OA', 'Matic', 'Vario 150', 'vario.webp', '100000', '1'),
-(85, 'DB 9822 VS', 'Matic', 'NMAX 2023', '2572610460.webp', '150000', ''),
+(85, 'DB 9822 VS', 'Matic', 'NMAX 2023', '2572610460.webp', '150000', '1'),
 (86, 'DB 8202 XY', 'Matic', 'X-Ride', 'Yamaha-X-ride-attractive-red.webp', '100000', '1'),
 (87, 'DB 3013 ND', 'Manual', 'Sonic 150', 'main-blue.png', '100000', '1'),
 (88, 'DB 9266 AV', 'Matic', 'Beat 2023', 'beat-sporty.webp', '85000', '1');
@@ -140,7 +141,8 @@ INSERT INTO `tb_sewa` (`id_sewa`, `id_customer`, `id_motor`, `tgl_pinjam`, `tgl_
 (125, 99, 86, '2023-06-19', '2023-06-21', 'KTP/SIM', 'Transfer Bank', '200000', 'Sudah Kembali', '0'),
 (126, 92, 84, '2023-05-29', '2023-05-31', 'KTP/SIM', 'Tunai', '1150000', 'Sudah Kembali', '950000'),
 (127, 85, 84, '2023-06-19', '2023-06-21', 'KTP/SIM', 'Transfer Bank', '200000', 'Sudah Kembali', '0'),
-(129, 84, 84, '2023-06-19', '2023-06-20', 'KTP/SIM', 'Transfer Bank', '100000', 'Sudah Kembali', '0');
+(129, 84, 84, '2023-06-19', '2023-06-20', 'KTP/SIM', 'Transfer Bank', '100000', 'Sudah Kembali', '0'),
+(131, 107, 86, '2023-06-19', '2023-06-20', 'KTP/SIM', 'Transfer Bank', '100000', 'Sudah Kembali', '0');
 
 -- --------------------------------------------------------
 
@@ -164,7 +166,9 @@ INSERT INTO `tb_transaksi` (`id_transaksi`, `id_sewa`, `gambar`, `deskripsi`, `k
 (10, 124, 'Screenshot_2022-01-19-11-22-28-981_com.indodana.app_-e1643105258853.jpg', 'sadsad', 'Sudah Dikonfirmasi'),
 (11, 125, 'WhatsApp Image 2023-06-13 at 21.21.25.jpeg', 'Lunas', 'Sudah Dikonfirmasi'),
 (12, 127, 'nk0zwc4ubm518tbnqt9j.png', 'Lunas ya bang', 'Sudah Dikonfirmasi'),
-(13, 129, 'Sebuah-Seni-Untuk-Bersikap-Bodo-Amat.jpg', 'Lunas', 'Sudah Dikonfirmasi');
+(13, 129, 'Sebuah-Seni-Untuk-Bersikap-Bodo-Amat.jpg', 'Lunas', 'Sudah Dikonfirmasi'),
+(14, 130, 'WhatsApp Image 2023-06-13 at 12.54.47.jpeg', 'Lunas', 'Sudah Dikonfirmasi'),
+(15, 131, 'WhatsApp Image 2023-06-13 at 21.21.25.jpeg', 'Lunas', 'Sudah Dikonfirmasi');
 
 --
 -- Indexes for dumped tables
@@ -209,7 +213,7 @@ ALTER TABLE `tb_transaksi`
 -- AUTO_INCREMENT untuk tabel `tb_customer`
 --
 ALTER TABLE `tb_customer`
-  MODIFY `id_customer` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=107;
+  MODIFY `id_customer` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=108;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_karyawan`
@@ -227,13 +231,13 @@ ALTER TABLE `tb_motor`
 -- AUTO_INCREMENT untuk tabel `tb_sewa`
 --
 ALTER TABLE `tb_sewa`
-  MODIFY `id_sewa` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=130;
+  MODIFY `id_sewa` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=132;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_transaksi`
 --
 ALTER TABLE `tb_transaksi`
-  MODIFY `id_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
