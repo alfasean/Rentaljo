@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -45,6 +45,13 @@
   <div class="mt-5">
     <h1 class="h-unit text">Pilihan Unit Kami</h1>
     <p class="p-unit text">Kami menyediakan beberapa unit motor, mulai dari motor matic sampai manual</p>
+    <form action="pencarian.php" method="GET">
+      <div class="container">
+      <div class="group">
+        <input placeholder="Search" type="search" class="input" name="search">
+      </div>
+      </div>
+    </form>
     <div class="container-services mt-4">
       <div class="row">
         <?php
