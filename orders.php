@@ -83,6 +83,7 @@ if ($result->num_rows > 0) {
                     <th class="text-dark text">Status</th>
                     <th class="text-dark text">Denda</th>
                     <th class="text-dark text">Total Bayar</th>
+                    <th class="text-dark text">Bayar</th>
                     <th class="text-dark text">Aksi</th>
                 </tr>
             </thead>
@@ -108,7 +109,13 @@ if ($result->num_rows > 0) {
                             echo "<td class='text'>" . $row_orderan['denda'] . "</td>";
                             echo "<td class='text'>" . $row_orderan['total_bayar'] . "</td>";
                         }
-                        
+
+                        if ($row_orderan['metode_pembayaran'] != "Tunai") {
+                            echo '<td><a href="index.php?p=bayar&menu_upd=' . $row_orderan['id_sewa'] . '" class="delete" title="Bayar"><i class="fa-solid fa-credit-card"></i></i></a></td>';
+                        } else {
+                            echo '<td></td>';
+                        }
+
                         if ($row_orderan['status'] != "Belum Kembali" && $row_orderan['status'] != "Sudah Kembali") {
                             echo '<td><a href="cancelSewa.php?menu_del=' . $row_orderan['id_sewa'] . '" class="delete" title="Cancel"><i class="fa-solid fa-ban"></i></a></td>';
                         } else {

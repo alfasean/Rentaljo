@@ -168,6 +168,9 @@ require_once "connections/config.php";
     		case "orders";
     			include 'orders.php';
     		break;
+    		case "bayar";
+    			include 'bayar.php';
+    		break;
     	}
     	?>
 

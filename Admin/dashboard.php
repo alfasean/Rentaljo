@@ -196,7 +196,7 @@
 const ctx2 = document.getElementById('myChart2').getContext('2d');
 
 
-const labels = ['May', 'June'];
+const labels = ['Mei', 'Juni'];
 
 const data2 = {
   labels: labels,

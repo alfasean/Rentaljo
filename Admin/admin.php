@@ -185,6 +185,9 @@ $nama_karyawan = $row['nama_karyawan'];
     		case "detailsewa";
     			include 'detailSewa.php';
     		break;
+    		case "bayar";
+    			include 'bayar.php';
+    		break;
     	}
     	?>
     <!-- ./wrapper -->

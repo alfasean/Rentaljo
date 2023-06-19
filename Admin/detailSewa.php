@@ -11,11 +11,13 @@ if ($conn->connect_error) {
     die("Koneksi database gagal: " . $conn->connect_error);
 }
 
+$id_sewa = $_GET['menu_upd'];
+
 $query = "SELECT tb_sewa.*, tb_customer.nama_customer, tb_motor.merk FROM tb_sewa
           JOIN tb_customer ON tb_sewa.id_customer = tb_customer.id_customer
-          JOIN tb_motor ON tb_sewa.id_motor = tb_motor.id_motor";
+          JOIN tb_motor ON tb_sewa.id_motor = tb_motor.id_motor
+          WHERE tb_sewa.id_sewa = '$id_sewa'";
 $result = $conn->query($query);
-
 ?>
 
 <!DOCTYPE html>
